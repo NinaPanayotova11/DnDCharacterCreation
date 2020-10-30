@@ -16,379 +16,124 @@
                 <div class="row all-classes-page-thumbnails">
                     <div v-for="dndClass in allClasses" :key="dndClass.name" class="figure col-3">
                         <img :src="dndClass.image" class="figure-img img-fluid rounded img-classes-thumbnails" alt="A generic square placeholder image with rounded corners in a figure.">
-                        <!-- <div class="figure-caption">{{dndClass.introduction}}</div> -->
                         <button v-on:click="chooseClass(dndClass.name)" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">{{dndClass.name}}</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" v-if="pageChanger === 'Wizard'">
-            <div class="col-10 classes-main-description">
+        <div class="row" v-if="pageChanger === 'allRaces'">
+            <div class="container all-races">
+                <div class="row all-races-page-title">
+                    <h1 class="dnd-races-title">Races</h1>
+                </div>
+                <div class="row all-classes-page-thumbnails">
+                    <div v-for="dndClass in allClasses" :key="dndClass.name" class="figure col-3">
+                        <img :src="dndClass.image" class="figure-img img-fluid rounded img-classes-thumbnails" alt="A generic square placeholder image with rounded corners in a figure.">
+                        <button v-on:click="chooseClass(dndClass.name)" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">{{dndClass.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" v-if="pageChanger === 'Wizard' || pageChanger === 'Cleric' || pageChanger === 'Druid' || pageChanger === 'Fighter' || pageChanger === 'Rogue' || pageChanger === 'Barbarian' || pageChanger === 'Warlock' || pageChanger === 'Ranger' || pageChanger === 'Paladin' || pageChanger === 'Monk' || pageChanger === 'Sorcerer' || pageChanger === 'Bard'">
+          <div class="row">
+            <div class="col-9 classes-main-description">
               <div class="introduction-to-class">
-                <h1 class="class-title-on-class-page">Wizard</h1>
-                <p>Wizards are supreme magic-users, defined and united as a class by the spells they cast. Drawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of explosive fire, arcing lightning, subtle deception, brute-force mind control, and much more.You must have an Intelligence score of 13 or higher in order to multiclass in or out of this class.</p>
+                <h1 class="class-title-on-class-page">{{allClasses[pageChanger].name}}</h1>
+                <p class="class-mini-description-on-class-page">{{allClasses[pageChanger].introduction}}</p>
               </div>
               <div class="row class-table">
-                <table class="table">
+                <table class="table dnd-class-table">
                   <thead class="thead-dark header-of-class-table">
                     <tr>
-                      <th scope="col">The Wizard</th>
-                      <th scope="col" colspan=12 style="padding-left: 26%;">Spell Slots per Spell Level</th>
+                      <th scope="col" colspan=2 style='text-align: start'>The {{allClasses[pageChanger].name}}</th>
+                      <th v-if="allClasses[pageChanger].type == 'Spellcaster'" scope="col" colspan=11 style="padding-left: 3%;">Spell Slots per Spell Level</th>
                     </tr>
                   </thead>
-                  <thead class="thead-dark">
+                  <thead class="thead-dark secondary-header-of-class-table">
                     <tr>
                       <th scope="col">Level</th>
                       <th scope="col">Proficiency Bonus</th>
+                      <th v-if="allClasses[pageChanger].sorceryPoints == true" scope="col">Sorcery Points</th>
                       <th scope="col">Features</th>
                       <th scope="col">Cantrips Known</th>
-                      <th scope="col">1st</th>
-                      <th scope="col">2nd</th>
-                      <th scope="col">3rd</th>
-                      <th scope="col">4th</th>
-                      <th scope="col">5th</th>
-                      <th scope="col">6th</th>
-                      <th scope="col">7th</th>
-                      <th scope="col">8th</th>
-                      <th scope="col">9th</th>
+                      <th v-if="allClasses[pageChanger].spellsKnown == true" scope="col">Spells Known</th>
+                      <template v-if="allClasses[pageChanger].type == 'Spellcaster' || allClasses[pageChanger].type == 'halfSpellcaster'">
+                          <th scope="col">1st</th>
+                          <th scope="col">2nd</th>
+                          <th scope="col">3rd</th>
+                          <th scope="col">4th</th>
+                          <th scope="col">5th</th>
+                         <template v-if="allClasses[pageChanger].type == 'Spellcaster'">
+                          <th scope="col">6th</th>
+                          <th scope="col">7th</th>
+                          <th scope="col">8th</th>
+                          <th scope="col">9th</th>
+                        </template>>
+                      </template>>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>+2</td>
-                      <td>Spellcasting, Arcane Recovery</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>+2</td>
-                      <td>Arcane Tradition</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>+2</td>
-                      <td></td>
-                      <td>3</td>
-                      <td>4</td>
-                      <td>2</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                       <tr>
-                      <th scope="row">4</th>
-                      <td>+2</td>
-                      <td>Ability Score Improvement</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td>+3</td>
-                      <td>Arcane Tradition</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">6</th>
-                      <td>+3</td>
-                      <td>Arcane Tradition feature</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">7</th>
-                      <td>+3</td>
-                      <td></td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>1</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">8</th>
-                      <td>+3</td>
-                      <td>Ability Score Improvement</td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">9</th>
-                      <td>+4</td>
-                      <td></td>
-                      <td>4</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>1</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">10</th>
-                      <td>+4</td>
-                      <td>Arcane Tradition feature</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">11</th>
-                      <td>+4</td>
-                      <td></td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                       <tr>
-                      <th scope="row">12</th>
-                      <td>+4</td>
-                      <td>Ability Score Improvement</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">13</th>
-                      <td>+5</td>
-                      <td></td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">14</th>
-                      <td>+5</td>
-                      <td>Arcane Tradition feature</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>-</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">15</th>
-                      <td>+5</td>
-                      <td></td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">16</th>
-                      <td>+5</td>
-                      <td>Ability Score Improvement</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>-</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">17</th>
-                      <td>+6</td>
-                      <td></td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">18</th>
-                      <td>+6</td>
-                      <td>Spell Mastery</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">19</th>
-                      <td>+6</td>
-                      <td>Signature Spells</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">20</th>
-                      <td>+6</td>
-                      <td>Arcane Tradition</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>1</td>
-                    </tr>
+                    <tr v-for="item in allClasses[pageChanger].spells" v-bind:key="item.level">                         
+                      <th scope="row">{{item.level}}</th>
+                      <td>{{item.proficiencyBonus}}</td>
+                      <td>{{findFeature(item.level, allClasses[pageChanger].features)}}</td>
+                      <td>{{item.cantrips}}</td>
+                      <td v-for="(slots, index) in item.spellSlots" v-bind:key="`slots-${index}`">{{slots}}</td> 
+                    </tr>                      
                   </tbody>
                 </table>
-              </div>
-              <div class="class-detailed-description">
-                <h1>Class Features</h1>
-                <h5>Hit Points</h5>
+                <div class="class-detailed-description">
+                <h1 class="class-detailed-description-title">Class Features</h1>
+                <h5 class="class-detailed-description-mini-title">Hit Points</h5>
                   <p>
                     <strong>Hit Dice:</strong>
-                    1d6 per wizard level
+                    {{allClasses[pageChanger].hitPoints.hitDice}}
                     <br>
                     <strong>Hit Points at 1st Level:</strong>
-                    6 + your Constitution modifier
+                    {{allClasses[pageChanger].hitPoints.hitPointsAtFirstLevel}}
                     <br>
                     <strong>Hit Points at Higher Levels:</strong>
-                    1d6 (or 4) + your Constitution modifier per wizard level after 1st
+                    {{allClasses[pageChanger].hitPoints.hitPointsAtHigherLevels}}
+                    <br>
+                  </p>
+                <h5 class="class-detailed-description-mini-title">Proficiencies</h5>
+                  <p>
+                    <strong>Armor:</strong>
+                    {{allClasses[pageChanger].proficiencies.armor}}
+                    <br>
+                    <strong>Weapons:</strong>
+                    {{allClasses[pageChanger].proficiencies.weapons}}
+                    <br>
+                    <strong>Tools:</strong>
+                    {{allClasses[pageChanger].proficiencies.tools}}
+                    <br>
+                    <strong>Saving Throws:</strong>
+                    {{allClasses[pageChanger].proficiencies.savingThrows}}
+                    <br>
+                    <strong>Skills:</strong>
+                    {{allClasses[pageChanger].proficiencies.skills}}
                     <br>
                   </p>
               </div>
+              </div>  
             </div>
-            <div class="col-2 classes-sidebar-recommendations">
-                <h2>Similar Classes</h2>
-                <h3>Sorcerer</h3>
-                <h4>Similarities: Spellcasters, No Armor, Small Hit Die, Huge Variety Of Spells</h4>
-                <button v-on:click="chooseClass('Sorcerer')" type="button" class="btn btn-primary recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">Sorcerer</button>
-                <h3>Bard</h3>
-                <h4>Similarities: Spellcasters, Huge Variety Of Spells</h4>
-                <button v-on:click="chooseClass('Bard')" type="button" class="btn btn-primary recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">Bard</button>
-                <h2>Suitable Races</h2>
-                <h3>Gnome</h3>
-                <h4>Race Bonuses: +2 Intelligence</h4>
-                <button type="button" class="btn btn-primary recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">Gnome</button>
-                <h3>Vedalken</h3>
-                <h4>Race Bonuses: +2 Intelligence</h4>
-                <button type="button" class="btn btn-primary recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">Vedalken</button>
+            <div class="col-3 classes-sidebar-recommendations">
+                <h3 class="similar-classes">Similar Classes</h3>
+                <h4 class="similar-classes-example">{{allClasses[pageChanger].similarClasses.firstName}}</h4>
+                <h5 class="similar-classes-example-description"><strong>Similarities:</strong>{{allClasses[pageChanger].similarClasses.firstDescription}}</h5>
+                <button v-on:click="chooseClass('Sorcerer')" type="button" class="btn btn-primary recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">{{allClasses[pageChanger].similarClasses.firstName}}</button>
+                <h4 class="similar-classes-example">{{allClasses[pageChanger].similarClasses.secondName}}</h4>
+                <h5 class="similar-classes-example-description"><strong>Similarities:</strong>{{allClasses[pageChanger].similarClasses.secondDescription}}</h5>
+                <button v-on:click="chooseClass('Bard')" type="button" class="btn btn-primary recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">{{allClasses[pageChanger].similarClasses.secondName}}</button>
+                <h3 class="suitable-races">Suitable Races</h3>
+                <h4 class="suitable-races-example">{{allClasses[pageChanger].suitableRaces.firstName}}</h4>
+                <h5 class="suitable-races-example-description"><strong>Race Bonuses:</strong>{{allClasses[pageChanger].suitableRaces.firstDescription}}</h5>
+                <button type="button" class="btn btn-primary recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">{{allClasses[pageChanger].suitableRaces.firstName}}</button>
+                <h4 class="suitable-races-example">{{allClasses[pageChanger].suitableRaces.secondName}}</h4>
+                <h5 class="suitable-races-example-description"><strong>Race Bonuses:</strong>{{allClasses[pageChanger].suitableRaces.secondDescription}}</h5>
+                <button type="button" class="btn btn-primary recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">{{allClasses[pageChanger].suitableRaces.secondName}}</button>
             </div>
+          </div>
         </div>
       </div> 
 </template>
@@ -404,9 +149,12 @@ export default {
   data () {
     return {
       pageChanger: 'home',
-      allClasses: [
-        {
+      allClasses: {
+        'Fighter':{
           name: 'Fighter',
+          type: 'nonSpellcaster',
+          spellsKnown: false,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/4b/bf/a1/4bbfa114bbb19afeaf740b7d45f67aee.jpg",
           introduction: 'swings sword',
           hitPoints: {
@@ -422,10 +170,13 @@ export default {
           skills: 'Choose two skills from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, and Survival',
           }
         },
-        {
+        'Wizard':{
           name: 'Wizard',
+          type: 'Spellcaster',
+          spellsKnown: false,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/ac/36/54/ac36540927acd0021025724e83ca028d.jpg",
-          introduction: 'throws fireballs',
+          introduction: 'Wizards are supreme magic-users, defined and united as a class by the spells they cast. Drawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of explosive fire, arcing lightning, subtle deception, brute-force mind control, and much more.You must have an Intelligence score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
             hitDice: '1d6 per wizard level',
             hitPointsAtFirstLevel: '6 + your Constitution modifier',
@@ -436,11 +187,198 @@ export default {
           weapons: 'Daggers, darts, slings, quarterstaffs, light crossbows',
           tools: 'None',
           savingThrows: 'Intelligence, Wisdom',
-          skills: 'Choose two from Arcana, History, Insight, Investigation, Medicine, and Religion',
-          }
+          skills: 'Choose two from Arcana, History, Insight, Investigation, Medicine, and Religion',         
+          },
+          features: [
+            {
+              name: "Spellcasting, Arcane Recovery", 
+              level: 1
+            },
+            {
+              name: "Arcane Tradition", 
+              level: 2
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 4
+            },
+            {
+              name: "Arcane Tradition feature", 
+              level: 6
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 8
+            },
+            {
+              name: "Arcane Tradition feature", 
+              level: 10
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 12
+            },
+            {
+              name: "Arcane Tradition feature", 
+              level: 14
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 16
+            },
+            {
+              name: "Spell Mastery", 
+              level: 18
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 19
+            },
+            {
+              name: "Signature Spells", 
+              level: 20
+            }
+          ],
+          spells: [
+            {
+              level: 1,
+              proficiencyBonus: '+2',
+              cantrips: 3,
+              spellSlots: [2, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 2,
+              proficiencyBonus: '+2',
+              cantrips: 3,
+              spellSlots: [3, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 3,
+              proficiencyBonus: '+2',
+              cantrips: 3,
+              spellSlots: [4, 2, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 4,
+              proficiencyBonus: '+2',
+              cantrips: 4,
+              spellSlots: [4, 3, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 5,
+              proficiencyBonus: '+3',
+              cantrips: 4,
+              spellSlots: [4, 3, 2, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 6,
+              proficiencyBonus: '+3',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 7,
+              proficiencyBonus: '+3',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 1, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 8,
+              proficiencyBonus: '+3',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 2, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 9,
+              proficiencyBonus: '+4',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 1, '-', '-', '-', '-']
+            },
+            {
+              level: 10,
+              proficiencyBonus: '+4',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, '-', '-', '-', '-']
+            },
+            {
+              level: 11,
+              proficiencyBonus: '+4',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 12,
+              proficiencyBonus: '+4',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 13,
+              proficiencyBonus: '+5',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 14,
+              proficiencyBonus: '+5',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 15,
+              proficiencyBonus: '+5',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 16,
+              proficiencyBonus: '+5',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 17,
+              proficiencyBonus: '+6',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, 1]
+            },
+            {
+              level: 18,
+              proficiencyBonus: '+6',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 3, 1, 1, 1, 1]
+            },
+            {
+              level: 19,
+              proficiencyBonus: '+6',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 3, 2, 1, 1, 1]
+            },
+            {
+              level: 20,
+              proficiencyBonus: '+6',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 3, 2, 2, 1, 1]
+            }
+          ],
+          similarClasses: {
+            firstName: 'Sorcerer',
+            firstDescription: ' Spellcasters, No Armor, Small Hit Die, Huge Variety Of Spells',
+            secondName: 'Bard',
+            secondDescription: ' Spellcasters, Huge Variety Of Spells',
+          },
+          suitableRaces: {
+            firstName: 'Gnome',
+            firstDescription: ' +2 Intelligence',
+            secondName: 'Tiefling',
+            secondDescription: ' +1 Intelligence',
+          },
         },
-        {
+        'Rogue':{
           name: 'Rogue',
+          type: 'nonSpellcaster',
+          spellsKnown: false,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/01/56/c7/0156c7576b1704ee70a55e4d1bd0db74.jpg",
           introduction: 'stabs people from stealth',
           hitPoints: {
@@ -456,10 +394,13 @@ export default {
           skills: 'Choose four from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, and Stealth',
           }
         },
-        {
+        'Cleric':{
           name: 'Cleric',
+          type: 'Spellcaster',
+          spellsKnown: false,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/236x/aa/35/f7/aa35f7c05afbc9e47fa73a9922a9c4ce.jpg",
-          introduction: 'blesses people and kills undead',
+          introduction: 'Clerics are intermediaries between the mortal world and the distant planes of the gods. As varied as the gods they serve, clerics strive to embody the handiwork of their deities. No ordinary priest, a cleric is imbued with divine magic. You must have a Wisdom score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
             hitDice: '1d8 per cleric level',
             hitPointsAtFirstLevel: '8 + your Constitution modifier',
@@ -471,12 +412,211 @@ export default {
           tools: 'None',
           savingThrows: 'Wisdom, Charisma',
           skills: 'Choose two from History, Insight, Medicine, Persuasion, and Religion',
-          }
+          },
+          features: [
+            {
+              name: "Spellcasting, Divine Domain", 
+              level: 1
+            },
+            {
+              name: "Channel Divinity (x1), Divine Domain feature", 
+              level: 2
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 4
+            },
+            {
+              name: "Destroy Undead (CR 1/2)", 
+              level: 5
+            },
+            {
+              name: "Channel Divinity (x2), Divine Domain feature", 
+              level: 6
+            },
+            {
+              name: "Ability Score Improvement, Destroy Undead (CR 1), Divine Domain feature", 
+              level: 8
+            },
+            {
+              name: "Divine Intervention", 
+              level: 10
+            },
+            {
+              name: "Destroy Undead (CR 2)", 
+              level: 11
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 12
+            },
+            {
+              name: "Destroy Undead (CR 3)", 
+              level: 14
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 16
+            },
+            {
+              name: "Destroy Undead (CR 4), Divine Domain feature", 
+              level: 17
+            },
+            {
+              name: "Channel Divinity (x3)", 
+              level: 18
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 19
+            },
+            {
+              name: "Divine Intervention improvement", 
+              level: 20
+            }
+          ],
+          spells: [
+            {
+              level: 1,
+              proficiencyBonus: '+2',
+              cantrips: 3,
+              spellSlots: [2, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 2,
+              proficiencyBonus: '+2',
+              cantrips: 3,
+              spellSlots: [3, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 3,
+              proficiencyBonus: '+2',
+              cantrips: 3,
+              spellSlots: [4, 2, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 4,
+              proficiencyBonus: '+2',
+              cantrips: 4,
+              spellSlots: [4, 3, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 5,
+              proficiencyBonus: '+3',
+              cantrips: 4,
+              spellSlots: [4, 3, 2, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 6,
+              proficiencyBonus: '+3',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 7,
+              proficiencyBonus: '+3',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 1, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 8,
+              proficiencyBonus: '+3',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 2, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 9,
+              proficiencyBonus: '+4',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 1, '-', '-', '-', '-']
+            },
+            {
+              level: 10,
+              proficiencyBonus: '+4',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, '-', '-', '-', '-']
+            },
+            {
+              level: 11,
+              proficiencyBonus: '+4',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 12,
+              proficiencyBonus: '+4',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 13,
+              proficiencyBonus: '+5',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 14,
+              proficiencyBonus: '+5',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 15,
+              proficiencyBonus: '+5',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 16,
+              proficiencyBonus: '+5',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 17,
+              proficiencyBonus: '+6',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, 1]
+            },
+            {
+              level: 18,
+              proficiencyBonus: '+6',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 3, 1, 1, 1, 1]
+            },
+            {
+              level: 19,
+              proficiencyBonus: '+6',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 3, 2, 1, 1, 1]
+            },
+            {
+              level: 20,
+              proficiencyBonus: '+6',
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 3, 2, 2, 1, 1]
+            }
+          ],
+          similarClasses: {
+            firstName: 'Druid',
+            firstDescription: ' Spellcasters, Average Hit Die, Huge Variety Of Healing Spells',
+            secondName: 'Paladin',
+            secondDescription: ' Similar Lore, Ability to Cast Spells',
+          },
+          suitableRaces: {
+            firstName: 'Human',
+            firstDescription: ' +1 to All Ability Scores',
+            secondName: 'Half-Elf',
+            secondDescription: ' +1 to Two Ability Scores, +2 to Charisma',
+          },
         },
-        {
+        'Druid':{
           name: 'Druid',
+          type: 'Spellcaster',
+          spellsKnown: false,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/22/15/e0/2215e0b60512e6055cbbee026a2d3f03.jpg",
-          introduction: 'most likely vegan or trying to get into it',
+          introduction: 'Whether calling on the elemental forces of nature or emulating the creatures of the animal world, druids are an embodiment of nature\'s resilience, cunning, and fury. They claim no mastery over nature, but see themselves as extensions of nature\'s indomitable will. You must have a Wisdom score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
             hitDice: '1d8 per druid level',
             hitPointsAtFirstLevel: '8 + your Constitution modifier',
@@ -488,10 +628,197 @@ export default {
           tools: 'Herbalism kit',
           savingThrows: 'Intelligence, Wisdom',
           skills: 'Choose two from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, and Survival',
-          }
+          },
+          features: [
+            {
+              name: "Druidic, Spellcasting", 
+              level: 1
+            },
+            {
+              name: "Wild Shape, Druid Circle", 
+              level: 2
+            },
+            {
+              name: "Wild Shape improvement, Ability Score Improvement", 
+              level: 4
+            },
+            {
+              name: "Druid Circle feature", 
+              level: 6
+            },
+            {
+              name: "Wild Shape improvement, Ability Score Improvement", 
+              level: 8
+            },
+            {
+              name: "Druid Circle feature", 
+              level: 10
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 12
+            },
+            {
+              name: "Druid Circle feature", 
+              level: 14
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 16
+            },
+            {
+              name: "Timeless Body, Beast Spells", 
+              level: 18
+            },
+            {
+              name: "Ability Score Improvement", 
+              level: 19
+            },
+            {
+              name: "Archdruid", 
+              level: 20
+            }
+          ],
+          spells: [
+            {
+              level: 1,
+              proficiencyBonus: '+2',
+              cantrips: 2,
+              spellSlots: [2, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 2,
+              proficiencyBonus: '+2',
+              cantrips: 2,
+              spellSlots: [3, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 3,
+              proficiencyBonus: '+2',
+              cantrips: 2,
+              spellSlots: [4, 2, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 4,
+              proficiencyBonus: '+2',
+              cantrips: 3,
+              spellSlots: [4, 3, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 5,
+              proficiencyBonus: '+3',
+              cantrips: 3,
+              spellSlots: [4, 3, 2, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 6,
+              proficiencyBonus: '+3',
+              cantrips: 3,
+              spellSlots: [4, 3, 3, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 7,
+              proficiencyBonus: '+3',
+              cantrips: 3,
+              spellSlots: [4, 3, 3, 1, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 8,
+              proficiencyBonus: '+3',
+              cantrips: 3,
+              spellSlots: [4, 3, 3, 2, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 9,
+              proficiencyBonus: '+4',
+              cantrips: 3,
+              spellSlots: [4, 3, 3, 3, 1, '-', '-', '-', '-']
+            },
+            {
+              level: 10,
+              proficiencyBonus: '+4',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, '-', '-', '-', '-']
+            },
+            {
+              level: 11,
+              proficiencyBonus: '+4',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 12,
+              proficiencyBonus: '+4',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 13,
+              proficiencyBonus: '+5',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 14,
+              proficiencyBonus: '+5',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 15,
+              proficiencyBonus: '+5',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 16,
+              proficiencyBonus: '+5',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 17,
+              proficiencyBonus: '+6',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, 1]
+            },
+            {
+              level: 18,
+              proficiencyBonus: '+6',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 3, 1, 1, 1, 1]
+            },
+            {
+              level: 19,
+              proficiencyBonus: '+6',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 3, 2, 1, 1, 1]
+            },
+            {
+              level: 20,
+              proficiencyBonus: '+6',
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 3, 2, 2, 1, 1]
+            }
+          ],
+          similarClasses: {
+            firstName: 'Cleric',
+            firstDescription: ' Spellcasters, Average Hit Die, Huge Variety Of Healing Spells',
+            secondName: 'Ranger',
+            secondDescription: ' Similar Lore, Ability to Cast Spells',
+          },
+          suitableRaces: {
+            firstName: 'Human',
+            firstDescription: ' +1 to All Ability Scores',
+            secondName: 'Half-Elf',
+            secondDescription: ' +1 to Two Ability Scores, +2 to Charisma',
+          },
         },
-        {
+        'Monk':{
           name: 'Monk',
+          type: 'nonSpellcaster',
+          spellsKnown: false,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/a5/ce/6a/a5ce6a1c7e6479c6e2f670e4e89c06e3.jpg",
           introduction: 'Though the river tells no lies, the dishonest standing on the shore, still hear them',
           hitPoints: {
@@ -507,8 +834,11 @@ export default {
           skills: 'Choose two from Acrobatics, Athletics, History, Insight, Religion, and Stealth',
           }
         },
-        {
+        'Paladin':{
           name: 'Paladin',
+          type: 'halfSpellcaster',
+          spellsKnown: false,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/3f/7a/1d/3f7a1d4c8789ac516f6ca0d2dfcd535a.jpg",
           introduction: 'smites things with religious vigor',
           hitPoints: {
@@ -524,8 +854,11 @@ export default {
           skills: 'Choose two from Athletics, Insight, Intimidation, Medicine, Persuasion, and Religion',
           }
         },
-        {
+        'Ranger':{
           name: 'Ranger',
+          type: 'halfSpellcaster',
+          spellsKnown: true,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/bf/de/2e/bfde2e3129b297513595c0dc9aea16d2.jpg",
           introduction: 'single, loves hiking and animals',
           hitPoints: {
@@ -541,8 +874,11 @@ export default {
           skills: 'Choose three from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, and Survival',
           }
         },
-        {
+        'Sorcerer':{
           name: 'Sorcerer',
+          type: 'Spellcaster',
+          spellsKnown: true,
+          sorceryPoints: true,
           image: "https://i.pinimg.com/564x/12/ab/e6/12abe68c7cda152e2a81f9e500c68a02.jpg",
           introduction: 'just born that way',
           hitPoints: {
@@ -558,8 +894,11 @@ export default {
           skills: 'Choose two from Arcana, Deception, Insight, Intimidation, Persuasion, and Religion',
           }
         },
-        {
+        'Warlock':{
           name: 'Warlock',
+          type: 'invocationSpellcaster',
+          spellsKnown: true,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/95/e9/9d/95e99d65e126b63e3daf5b590ca23b00.jpg",
           introduction: 'very dark and edgy',
           hitPoints: {
@@ -575,8 +914,11 @@ export default {
           skills: 'Choose two from Arcana, Deception, History, Intimidation, Investigation, Nature, and Religion',
           }
         },
-        {
+        'Bard':{
           name: 'Bard',
+          type: 'Spellcaster',
+          spellsKnown: true,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/ff/0b/90/ff0b907eec84bb483ad612093514dc56.jpg",
           introduction: 'influencer',
           hitPoints: {
@@ -592,8 +934,11 @@ export default {
           skills: 'Choose any three',
           }
         },
-        {
+        'Barbarian':{
           name: 'Barbarian',
+          type: 'nonSpellcaster',
+          spellsKnown: false,
+          sorceryPoints: false,
           image: "https://i.pinimg.com/564x/4a/a0/b7/4aa0b7c762d03855391f8c40ab140b6e.jpg",
           introduction: 'self-explanatory',
           hitPoints: {
@@ -609,7 +954,60 @@ export default {
           skills: 'Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival',
           }
         },
-      ]
+      },
+      allRaces:{
+        'dragonborn':{
+          name: 'Dragonborn',
+          introduction: 'The dragonborn walk proudly through a world that greets them with fearful incomprehension. Shaped by the dragons themselves, dragonborn originally hatched from dragon eggs as a unique race, combining the best attributes of dragons and humanoids.',
+          age: 'Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.',
+          alignment: 'Dragonborn tend towards extremes, making a conscious choice for one side or the other between Good and Evil (represented by Bahamut and Tiamat, respectively). More side with Bahamut than Tiamat (whose non-dragon followers are mostly kobolds), but villainous dragonborn can be quite terrible indeed. Some rare few choose to devote themselves to lesser dragon deities, such as Chronepsis (Neutral), and fewer still choose to worship Io, the Ninefold Dragon, who is all alignments at once.',
+          size: 'Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.',
+          speed: 'Your base walking speed is 30 feet.',
+          languages: 'You can read, speak, and write Common and Draconic.',
+          abilityScoreIncrease: 'Your Strength score increases by 2, and your Charisma score increases by 1.',
+           similarRaces: {
+            firstName: 'Half-Orc',
+            firstDescription: ' +2 Strength',
+            secondName: 'Tiefling',
+            secondDescription: ' +2 Charisma',
+          },
+          suitableClasses: {
+            firstName: 'Fighter',
+            firstDescription: ' +2 Strength',
+            secondName: 'Bard',
+            secondDescription: ' +1 Charisma',
+          },
+        },
+        'dwarf':{
+          name: 'Dwarf',
+          introduction: 'Kingdoms rich in ancient grandeur, halls carved into the roots of mountains, the echoing of picks and hammers in deep mines and blazing forges, a commitment to clan and tradition, and a burning hatred of goblins and orcs – these common threads unite all dwarves.',
+          age: 'Dwarves mature at the same rate as humans, but they\'re considered young until they reach the age of 50. On average, they live about 350 years.',
+          alignment: 'Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.',
+          size: 'Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.',
+          speed: 'Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor.',
+          languages: 'You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak.',
+          abilityScoreIncrease: 'Your Constitution score increases by 2.',
+           similarRaces: {
+            firstName: 'Human',
+            firstDescription: ' +1 to All Ability Scores',
+            secondName: 'Half-Elf',
+            secondDescription: ' +1 to Two Ability Scores, +2 to Charisma',
+          },
+          suitableClasses: {
+            firstName: 'Fighter',
+            firstDescription: ' Mele Classes Need Constitution the Most',
+            secondName: 'Barbarian',
+            secondDescription: ' Mele Classes Need Constitution the Most',
+          },
+        },
+        'elf':{},
+        'gnome':{},
+        'half-elf':{},
+        'half-orc':{},
+        'halfling':{},
+        'human':{},
+        'tiefling':{}
+      },
     }
   },
   // watch: {
@@ -620,7 +1018,21 @@ export default {
   methods: {
     chooseClass(chosenClass){
       this.pageChanger = chosenClass;
-    }
+    },
+    findFeature(itemLevel, arr){
+      let result = undefined;
+      arr.forEach(function(feature) {
+       if(feature.level == itemLevel){
+          result = feature.name;
+        }
+      });    
+      if(result == undefined){
+        return '';
+      }
+      else{
+        return result;
+      }
+    },
   }
 }
 </script>
@@ -678,7 +1090,8 @@ html, body, .row, .col-6 {
   background-color: #3e3731;
 }
 .btn-primary{
-  color: #cecece;
+  color: #989a9c;
+  font-weight: bold;
   background-color: #462025;
   border-color: #462025;
 }
@@ -691,10 +1104,11 @@ html{
 }
 h2,h3,h4{
   color: #000;
-  padding: 5px;
 }
 .classes-sidebar-recommendations{
   background-color: #3e3731;
+  border-left: 2px solid #151515 !important;
+  border-right: 2px solid #151515!important;
 }
 .recommendations{
   padding: 5px;
@@ -708,5 +1122,65 @@ p{
 }
 .class-title-on-class-page{
    color: #151515;
+   font-weight: bold;
+}
+.class-detailed-description{
+  text-align: left;
+}
+.class-table{
+  height: 75%;
+}
+.class-detailed-description-title{
+  color: #000;
+  padding-bottom: 30px;
+}
+.class-detailed-description-mini-title{
+  color: #000;
+  font-weight: bold;
+}
+.class-mini-description-on-class-page{
+   text-align: left;
+   font-weight: bold;
+}
+.header-of-class-table th {
+    color:rgb(20, 19, 19) !important;
+}
+.secondary-header-of-class-table th {
+    color:rgb(20, 19, 19) !important;
+}
+.dnd-class-table{
+   color:rgb(27, 27, 27) !important;
+   font-weight: bold !important;
+}
+.dnd-class-table th{
+   border-top: 1px solid #6c7075 !important;
+}
+.dnd-class-table td{
+   border-top: 1px solid #6c7075 !important;
+}
+.dnd-class-table thead th {
+    border-bottom: 2px solid #6c7075 !important;
+}
+.similar-classes, .suitable-races{
+  padding-bottom: 7px;
+  padding-top: 50px;
+  color: #151515;
+  font-weight: bold;
+}
+.similar-classes-example, .suitable-races-example{
+  padding-top: 20px;
+  color: #15191d;
+  font-weight: bold;
+}
+.suitable-races-example-description, .similar-classes-example-description{
+  color: #15191d;
+}
+.classes-main-description{
+  padding-right: 30px;
+  padding-top: 40px;
+}
+.class-detailed-description{
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 </style>
