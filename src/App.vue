@@ -55,6 +55,24 @@
                         <th scope="col">Sorcery Points</th>
                       </template>
                         <th scope="col">Features</th>
+                      <template v-if="allClasses[pageChanger].hasMartialArts == true">
+                        <th scope="col">Martial Arts</th>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasKiPoints == true">
+                        <th scope="col">Ki Points</th>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasUnarmoredMovement == true">
+                        <th scope="col">Unarmored Movement</th>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasSneakAttack == true">
+                        <th scope="col">Sneak Attack</th>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasRages == true">
+                        <th scope="col">Rages</th>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasRageDamage == true">
+                        <th scope="col">Rage Damage</th>
+                      </template>
                       <template v-if="allClasses[pageChanger].hasCantrips == true">
                         <th scope="col">Cantrips Known</th>
                       </template>
@@ -85,9 +103,30 @@
                     <tr v-for="item in allClasses[pageChanger].infoForEachLevel" v-bind:key="item.level">                         
                       <th scope="row">{{item.level}}</th>
                       <td>{{item.proficiencyBonus}}</td>
+                      <template v-if="allClasses[pageChanger].sorceryPoints == true">
+                        <td>{{item.sorceryPoints}}</td>
+                      </template>
                       <td>{{item.feature}}</td>
+                      <template v-if="allClasses[pageChanger].hasMartialArts == true">
+                        <td>{{item.martialArts}}</td>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasKiPoints == true">
+                        <td>{{item.kiPoints}}</td>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasUnarmoredMovement == true">
+                        <td>{{item.unarmoredMovement}}</td>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasRages == true">
+                        <td>{{item.rage}}</td>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasRageDamage == true">
+                        <td>{{item.rageDamage}}</td>
+                      </template>
                       <template v-if="allClasses[pageChanger].hasCantrips == true">
                         <td>{{item.cantrips}}</td>
+                      </template>
+                      <template v-if="allClasses[pageChanger].hasSneakAttack == true">
+                        <td>{{item.sneakAttack}}</td>
                       </template>
                       <template v-if="allClasses[pageChanger].spellsKnown == true">
                         <td>{{item.knownSpells}}</td>
@@ -181,6 +220,12 @@ export default {
           spellsKnown: false,
           sorceryPoints: false,
           hasCantrips: false,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/4b/bf/a1/4bbfa114bbb19afeaf740b7d45f67aee.jpg",
           introduction: 'Fighters share an unparalleled mastery with weapons and armor, and a thorough knowledge of the skills of combat. They are well acquainted with death, both meting it out and staring it defiantly in the face. You must have a Dexterity or Strength score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
@@ -316,6 +361,12 @@ export default {
           spellsKnown: false,
           sorceryPoints: false,
           hasCantrips: true,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/ac/36/54/ac36540927acd0021025724e83ca028d.jpg",
           introduction: 'Wizards are supreme magic-users, defined and united as a class by the spells they cast. Drawing on the subtle weave of magic that permeates the cosmos, wizards cast spells of explosive fire, arcing lightning, subtle deception, brute-force mind control, and much more.You must have an Intelligence score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
@@ -475,7 +526,7 @@ export default {
             firstName: 'Sorcerer',
             firstDescription: ' Spellcasters, No Armor, Small Hit Die, Huge Variety Of Spells',
             secondName: 'Bard',
-            secondDescription: ' Spellcasters, Huge Variety Of Spells',
+            secondDescription: ' Spellcasters, Huge Variety Of Spells, Both Require Charisma',
           },
           suitableRaces: {
             firstName: 'Gnome',
@@ -490,8 +541,14 @@ export default {
           spellsKnown: false,
           sorceryPoints: false,
           hasCantrips: false,
+          hasSneakAttack: true,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/01/56/c7/0156c7576b1704ee70a55e4d1bd0db74.jpg",
-          introduction: 'stabs people from stealth',
+          introduction: 'Rogues rely on skill, stealth, and their foes\' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem, demonstrating a resourcefulness and versatility that is the cornerstone of any successful adventuring party.You must have a Dexterity score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
             hitDice: '1d8 per rogue level',
             hitPointsAtFirstLevel: '8 + your Constitution modifier',
@@ -503,7 +560,141 @@ export default {
           tools: 'Thieves\' tools',
           savingThrows: 'Dexterity, Intelligence',
           skills: 'Choose four from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, and Stealth',
-          }
+          },
+          infoForEachLevel: [
+            {
+              level: 1,
+              proficiencyBonus: '+2',
+              sneakAttack: '1d6',
+              feature: "Expertise, Sneak Attack, Thieves' Cant",
+            },
+            {
+              level: 2,
+              proficiencyBonus: '+2',
+              sneakAttack: '1d6',
+              feature: "Cunning Action",
+            },
+            {
+              level: 3,
+              proficiencyBonus: '+2',
+              sneakAttack: '2d6',
+              feature: 'Roguish Archetype',
+            },
+            {
+              level: 4,
+              proficiencyBonus: '+2',
+              sneakAttack: '2d6',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 5,
+              proficiencyBonus: '+3',
+              sneakAttack: '3d6',
+              feature: "Uncanny Dodge",
+            },
+            {
+              level: 6,
+              proficiencyBonus: '+3',
+              sneakAttack: '3d6',
+              feature: "Expertise",
+            },
+            {
+              level: 7,
+              proficiencyBonus: '+3',
+              sneakAttack: '4d6',
+              feature: 'Evasion',
+            },
+            {
+              level: 8,
+              proficiencyBonus: '+3',
+              sneakAttack: '4d6',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 9,
+              proficiencyBonus: '+4',
+              sneakAttack: '5d6',
+              feature: 'Roguish Archetype feature',
+            },
+            {
+              level: 10,
+              proficiencyBonus: '+4',
+              sneakAttack: '5d6',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 11,
+              proficiencyBonus: '+4',
+              sneakAttack: '6d6',
+              feature: "Reliable Talent", 
+            },
+            {
+              level: 12,
+              proficiencyBonus: '+4',
+              sneakAttack: '6d6',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 13,
+              proficiencyBonus: '+5',
+              sneakAttack: '7d6',
+              feature: 'Roguish Archetype feature',
+            },
+            {
+              level: 14,
+              proficiencyBonus: '+5',
+              sneakAttack: '7d6',
+              feature: "Blindsense",
+            },
+            {
+              level: 15,
+              proficiencyBonus: '+5',
+              sneakAttack: '8d6',
+              feature: 'Slippery Mind',
+            },
+            {
+              level: 16,
+              proficiencyBonus: '+5',
+              sneakAttack: '8d6',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 17,
+              proficiencyBonus: '+6',
+              sneakAttack: '9d6',
+              feature: "Roguish Archetype feature",
+            },
+            {
+              level: 18,
+              proficiencyBonus: '+6',
+              sneakAttack: '9d6',
+              feature: "Elusive",
+            },
+            {
+              level: 19,
+              proficiencyBonus: '+6',
+              sneakAttack: '10d6',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 20,
+              proficiencyBonus: '+6',
+              sneakAttack: '10d6',
+              feature: "Stroke of Luck",
+            }
+          ],
+          similarClasses: {
+            firstName: 'Ranger',
+            firstDescription: ' Both Require Dexterity, Both Can be Stealthy',
+            secondName: 'Bard',
+            secondDescription: ' Both Have Expertise, Similar Style',
+          },
+          suitableRaces: {
+            firstName: 'Halfling',
+            firstDescription: ' +2 Dexterity',
+            secondName: 'Elf',
+            secondDescription: ' +2 Dexterity',
+          },
         },
         'Cleric':{
           name: 'Cleric',
@@ -511,6 +702,12 @@ export default {
           spellsKnown: false,
           sorceryPoints: false,
           hasCantrips: true,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/236x/aa/35/f7/aa35f7c05afbc9e47fa73a9922a9c4ce.jpg",
           introduction: 'Clerics are intermediaries between the mortal world and the distant planes of the gods. As varied as the gods they serve, clerics strive to embody the handiwork of their deities. No ordinary priest, a cleric is imbued with divine magic. You must have a Wisdom score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
@@ -686,6 +883,12 @@ export default {
           spellsKnown: false,
           sorceryPoints: false,
           hasCantrips: true,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/22/15/e0/2215e0b60512e6055cbbee026a2d3f03.jpg",
           introduction: 'Whether calling on the elemental forces of nature or emulating the creatures of the animal world, druids are an embodiment of nature\'s resilience, cunning, and fury. They claim no mastery over nature, but see themselves as extensions of nature\'s indomitable will. You must have a Wisdom score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
@@ -861,8 +1064,14 @@ export default {
           spellsKnown: false,
           sorceryPoints: false,
           hasCantrips: false,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: true,
+          hasKiPoints: true,
+          hasUnarmoredMovement: true,
           image: "https://i.pinimg.com/564x/a5/ce/6a/a5ce6a1c7e6479c6e2f670e4e89c06e3.jpg",
-          introduction: 'Though the river tells no lies, the dishonest standing on the shore, still hear them',
+          introduction: 'Monks are united in their ability to magically harness the energy that flows in their bodies. Whether channeled as a striking display of combat prowess or a subtler focus of defensive ability and speed, this energy infuses all that a monk does. You must have a Dexterity score and a Wisdom score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
             hitDice: '1d8 per monk level',
             hitPointsAtFirstLevel: '8 + your Constitution modifier',
@@ -874,7 +1083,181 @@ export default {
           tools: 'Choose one type of artisan\'s tools or one musical instrument',
           savingThrows: 'Strength, Dexterity',
           skills: 'Choose two from Acrobatics, Athletics, History, Insight, Religion, and Stealth',
-          }
+          },
+          infoForEachLevel: [
+            {
+              level: 1,
+              proficiencyBonus: '+2',
+              feature: "Unarmored Defense, Martial Arts",
+              martialArts: '1d4',
+              kiPoints: '-',
+              unarmoredMovement: '-'
+            },
+            {
+              level: 2,
+              proficiencyBonus: '+2',
+              feature: "Ki, Unarmored Movement",
+              martialArts: '1d4',
+              kiPoints: 2,
+              unarmoredMovement: '+10ft'
+            },
+            {
+              level: 3,
+              proficiencyBonus: '+2',
+              feature: 'Monastic Tradition, Deflect Missiles',
+              martialArts: '1d4',
+              kiPoints: 3,
+              unarmoredMovement: '+10ft'
+            },
+            {
+              level: 4,
+              proficiencyBonus: '+2',
+              feature: "Ability Score Improvement, Slow Fall",
+              martialArts: '1d4',
+              kiPoints: 4,
+              unarmoredMovement: '+10ft'
+            },
+            {
+              level: 5,
+              proficiencyBonus: '+3',
+              feature: "Extra Attack, Stunning Strike",
+              martialArts: '1d6',
+              kiPoints: 5,
+              unarmoredMovement: '+10ft'
+            },
+            {
+              level: 6,
+              proficiencyBonus: '+3',
+              feature: "Ki-Empowered Strikes, Monastic Tradition feature",
+              martialArts: '1d6',
+              kiPoints: 6,
+              unarmoredMovement: '+15ft'
+            },
+            {
+              level: 7,
+              proficiencyBonus: '+3',
+              feature: 'Evasion, Stillness of Mind',
+              martialArts: '1d6',
+              kiPoints: 7,
+              unarmoredMovement: '+15ft'
+            },
+            {
+              level: 8,
+              proficiencyBonus: '+3',
+              feature: "Ability Score Improvement",
+              martialArts: '1d6',
+              kiPoints: 8,
+              unarmoredMovement: '+15ft'
+            },
+            {
+              level: 9,
+              proficiencyBonus: '+4',
+              feature: 'Unarmored Movement improvement',
+              martialArts: '1d6',
+              kiPoints: 9,
+              unarmoredMovement: '+15ft'
+            },
+            {
+              level: 10,
+              proficiencyBonus: '+4',
+              feature: "Purity of Body",
+              martialArts: '1d6',
+              kiPoints: 10,
+              unarmoredMovement: '+20ft'
+            },
+            {
+              level: 11,
+              proficiencyBonus: '+4',
+              feature: "Monastic Tradition feature", 
+              martialArts: '1d8',
+              kiPoints: 11,
+              unarmoredMovement: '+20ft'
+            },
+            {
+              level: 12,
+              proficiencyBonus: '+4',
+              feature: "Ability Score Improvement",
+              martialArts: '1d8',
+              kiPoints: 12,
+              unarmoredMovement: '+20ft'
+            },
+            {
+              level: 13,
+              proficiencyBonus: '+5',
+              feature: 'Tongue of the Sun and Moon',
+              martialArts: '1d8',
+              kiPoints: 13,
+              unarmoredMovement: '+20ft'
+            },
+            {
+              level: 14,
+              proficiencyBonus: '+5',
+              feature: "Diamond Soul",
+              martialArts: '1d8',
+              kiPoints: 14,
+              unarmoredMovement: '+25ft'
+            },
+            {
+              level: 15,
+              proficiencyBonus: '+5',
+              feature: 'Timeless Body',
+              martialArts: '1d8',
+              kiPoints: 15,
+              unarmoredMovement: '+25ft'
+            },
+            {
+              level: 16,
+              proficiencyBonus: '+5',
+              feature: "Ability Score Improvement",
+              martialArts: '1d8',
+              kiPoints: 16,
+              unarmoredMovement: '+25ft'
+            },
+            {
+              level: 17,
+              proficiencyBonus: '+6',
+              feature: "Monastic Tradition feature",
+              martialArts: '1d10',
+              kiPoints: 17,
+              unarmoredMovement: '+25ft'
+            },
+            {
+              level: 18,
+              proficiencyBonus: '+6',
+              feature: "Empty Body",
+              martialArts: '1d10',
+              kiPoints: 18,
+              unarmoredMovement: '+30ft'
+            },
+            {
+              level: 19,
+              proficiencyBonus: '+6',
+              feature: "Ability Score Improvement",
+              martialArts: '1d10',
+              kiPoints: 19,
+              unarmoredMovement: '+30ft'
+            },
+            {
+              level: 20,
+              proficiencyBonus: '+6',
+              feature: "Perfect Self",
+              martialArts: '1d10',
+              kiPoints: 20,
+              unarmoredMovement: '+30ft'
+            }
+          ],       
+          similarClasses: {
+            firstName: 'Paladin',
+            firstDescription: ' Mele Fighters, Both Have a Strong Belief System ',
+            secondName: 'Rogue',
+            secondDescription: ' Both Require Dexterity, Same Hit Dice, Similar Weapons',
+          },
+          suitableRaces: {
+            firstName: 'Halfling',
+            firstDescription: ' +2 Dexterity',
+            secondName: 'Elf',
+            secondDescription: ' +2 Dexterity',
+          },
         },
         'Paladin':{
           name: 'Paladin',
@@ -882,6 +1265,12 @@ export default {
           spellsKnown: false,
           sorceryPoints: false,
           hasCantrips: false,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/3f/7a/1d/3f7a1d4c8789ac516f6ca0d2dfcd535a.jpg",
           introduction: 'Whether sworn before a god\'s altar and the witness of a priest, in a sacred glade before nature spirits and fey beings, or in a moment of desperation and grief with the dead as the only witness, a paladin\'s oath is a powerful bond. You must have a Charisma score and a Strength score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
@@ -1057,6 +1446,12 @@ export default {
           spellsKnown: true,
           sorceryPoints: false,
           hasCantrips: false,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/bf/de/2e/bfde2e3129b297513595c0dc9aea16d2.jpg",
           introduction: 'Far from the bustle of cities and towns, past the hedges that shelter the most distant farms from the terrors of the wild, amid the dense-packed trees of trackless forests and across wide and empty plains, rangers keep their unending watch. You must have a Dexterity score and a Wisdom score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
@@ -1232,8 +1627,14 @@ export default {
           spellsKnown: true,
           sorceryPoints: true,
           hasCantrips: true,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/12/ab/e6/12abe68c7cda152e2a81f9e500c68a02.jpg",
-          introduction: 'just born that way',
+          introduction: 'Sorcerers carry a magical birthright conferred upon them by an exotic bloodline, some otherworldly influence, or exposure to unknown cosmic forces. No one chooses sorcery; the power chooses the sorcerer. You must have a Charisma score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
             hitDice: '1d6 per sorcerer level',
             hitPointsAtFirstLevel: '6 + your Constitution modifier',
@@ -1245,7 +1646,201 @@ export default {
           tools: 'None',
           savingThrows: 'Constitution, Charisma',
           skills: 'Choose two from Arcana, Deception, Insight, Intimidation, Persuasion, and Religion',
-          }
+          },
+          infoForEachLevel: [
+            {
+              level: 1,
+              proficiencyBonus: '+2',
+              feature: "Spellcasting, Sorcerous Origin",
+              knownSpells: 2,
+              sorceryPoints: '-',
+              cantrips: 4,
+              spellSlots: [2, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 2,
+              proficiencyBonus: '+2',
+              feature: "Font of Magic",
+              knownSpells: 3,
+              sorceryPoints: 2,
+              cantrips: 4,
+              spellSlots: [3, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 3,
+              proficiencyBonus: '+2',
+              feature: 'Metamagic',
+              knownSpells: 4,
+              sorceryPoints: 3,
+              cantrips: 4,
+              spellSlots: [4, 2, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 4,
+              proficiencyBonus: '+2',
+              feature: "Ability Score Improvement",
+              knownSpells: 5,
+              sorceryPoints: 4,
+              cantrips: 5,
+              spellSlots: [4, 3, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 5,
+              proficiencyBonus: '+3',
+              feature: '',
+              knownSpells: 6,
+              sorceryPoints: 5,
+              cantrips: 5,
+              spellSlots: [4, 3, 2, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 6,
+              proficiencyBonus: '+3',
+              feature: "Sorcerous Origin feature", 
+              knownSpells: 7,
+              sorceryPoints: 6,
+              cantrips: 5,
+              spellSlots: [4, 3, 3, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 7,
+              proficiencyBonus: '+3',
+              feature: '',
+              knownSpells: 8,
+              sorceryPoints: 7,
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 1, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 8,
+              proficiencyBonus: '+3',
+              feature: "Ability Score Improvement",
+              knownSpells: 9,
+              sorceryPoints: 8,
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 2, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 9,
+              proficiencyBonus: '+4',
+              feature: '',
+              knownSpells: 10,
+              sorceryPoints: 9,
+              cantrips: 5,
+              spellSlots: [4, 3, 3, 3, 1, '-', '-', '-', '-']
+            },
+            {
+              level: 10,
+              proficiencyBonus: '+4',
+              feature: "Metamagic",
+              knownSpells: 11,
+              sorceryPoints: 10,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 2, '-', '-', '-', '-']
+            },
+            {
+              level: 11,
+              proficiencyBonus: '+4',
+              feature: '',
+              knownSpells: 12,
+              sorceryPoints: 11,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 12,
+              proficiencyBonus: '+4',
+              feature: "Ability Score Improvement",
+              knownSpells: 12,
+              sorceryPoints: 12,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 13,
+              proficiencyBonus: '+5',
+              feature: '',
+              knownSpells: 13,
+              sorceryPoints: 13,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 14,
+              proficiencyBonus: '+5',
+              feature: 'Sorcerous Origin feature',
+              knownSpells: 13,
+              sorceryPoints: 14,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 15,
+              proficiencyBonus: '+5',
+              feature: '',
+              knownSpells: 14,
+              sorceryPoints: 15,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 16,
+              proficiencyBonus: '+5',
+              feature: "Ability Score Improvement", 
+              knownSpells: 14,
+              sorceryPoints: 16,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 17,
+              proficiencyBonus: '+6',
+              feature: 'Metamagic',
+              knownSpells: 15,
+              sorceryPoints: 17,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, 1]
+            },
+            {
+              level: 18,
+              proficiencyBonus: '+6',
+              feature: "Sorcerous Origin feature",
+              knownSpells: 15,
+              sorceryPoints: 18,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 3, 1, 1, 1, 1]
+            },
+            {
+              level: 19,
+              proficiencyBonus: '+6',
+              feature: "Ability Score Improvement",
+              knownSpells: 15,
+              sorceryPoints: 19,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 3, 2, 1, 1, 1]
+            },
+            {
+              level: 20,
+              proficiencyBonus: '+6',
+              feature: "Sorcerous Restoration",
+              knownSpells: 15,
+              sorceryPoints: 20,
+              cantrips: 6,
+              spellSlots: [4, 3, 3, 3, 3, 2, 2, 1, 1]
+            }
+          ],
+            similarClasses: {
+            firstName: 'Wizard',
+            firstDescription: ' Spellcasters, No Armor, Small Hit Die, Huge Variety Of Spells',
+            secondName: 'Bard',
+            secondDescription: ' Spellcasters, Huge Variety Of Spells',
+            },
+            suitableRaces: {
+              firstName: 'Half-Elf',
+              firstDescription: ' +2 Charisma, +1 to Two Ability Scores',
+              secondName: 'Tiefling',
+              secondDescription: ' +2 Charisma',
+            },
         },
         'Warlock':{
           name: 'Warlock',
@@ -1253,6 +1848,12 @@ export default {
           spellsKnown: true,
           sorceryPoints: false,
           hasCantrips: true,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/95/e9/9d/95e99d65e126b63e3daf5b590ca23b00.jpg",
           introduction: 'Warlocks are seekers of the knowledge that lies hidden in the fabric of the multiverse. Through pacts made with mysterious beings of supernatural power, warlocks unlock magical effects both subtle and spectacular. You must have a Charisma score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
@@ -1488,8 +2089,14 @@ export default {
           spellsKnown: true,
           sorceryPoints: false,
           hasCantrips: true,
+          hasSneakAttack: false,
+          hasRages: false,
+          hasRageDamage: false,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/ff/0b/90/ff0b907eec84bb483ad612093514dc56.jpg",
-          introduction: 'influencer',
+          introduction: 'Whether scholar, skald, or scoundrel, a bard weaves magic through words and music to inspire allies, demoralize foes, manipulate minds, create illusions, and even heal wounds. The bard is a master of song, speech, and the magic they contain. You must have a Charisma score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
             hitDice: '1d8 per bard level',
             hitPointsAtFirstLevel: '8 + your Constitution modifier',
@@ -1501,7 +2108,181 @@ export default {
           tools: 'Three musical instruments of your choice',
           savingThrows: 'Dexterity, Charisma',
           skills: 'Choose any three',
-          }
+          },
+          infoForEachLevel: [
+            {
+              level: 1,
+              proficiencyBonus: '+2',
+              feature: "Spellcasting, Bardic Inspiration (d6)",
+              knownSpells: 4,
+              cantrips: 2,
+              spellSlots: [2, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 2,
+              proficiencyBonus: '+2',
+              feature: "Jack of All Trades, Song of Rest (d6)",
+              knownSpells: 5,
+              cantrips: 2,
+              spellSlots: [3, '-', '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 3,
+              proficiencyBonus: '+2',
+              feature: 'Bard College, Expertise',
+              knownSpells: 6,
+              cantrips: 2,
+              spellSlots: [4, 2, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 4,
+              proficiencyBonus: '+2',
+              feature: "Ability Score Improvement",
+              knownSpells: 7,
+              cantrips: 3,
+              spellSlots: [4, 3, '-', '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 5,
+              proficiencyBonus: '+3',
+              feature: 'Bardic Inspiration (d8), Font of Inspiration',
+              knownSpells: 8,
+              cantrips: 3,
+              spellSlots: [4, 3, 2, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 6,
+              proficiencyBonus: '+3',
+              feature: "Countercharm, Bard College feature", 
+              knownSpells: 9,
+              cantrips: 3,
+              spellSlots: [4, 3, 3, '-', '-', '-', '-', '-', '-']
+            },
+            {
+              level: 7,
+              proficiencyBonus: '+3',
+              feature: '',
+              knownSpells: 10,
+              cantrips: 3,
+              spellSlots: [4, 3, 3, 1, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 8,
+              proficiencyBonus: '+3',
+              feature: "Ability Score Improvement",
+              knownSpells: 11,
+              cantrips: 3,
+              spellSlots: [4, 3, 3, 2, '-', '-', '-', '-', '-']
+            },
+            {
+              level: 9,
+              proficiencyBonus: '+4',
+              feature: 'Song of Rest (d8)',
+              knownSpells: 12,
+              cantrips: 3,
+              spellSlots: [4, 3, 3, 3, 1, '-', '-', '-', '-']
+            },
+            {
+              level: 10,
+              proficiencyBonus: '+4',
+              feature: "Bardic Inspiration (d10), Expertise, Magical Secrets",
+              knownSpells: 14,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, '-', '-', '-', '-']
+            },
+            {
+              level: 11,
+              proficiencyBonus: '+4',
+              feature: '',
+              knownSpells: 15,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 12,
+              proficiencyBonus: '+4',
+              feature: "Ability Score Improvement",
+              knownSpells: 15,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, '-', '-', '-']
+            },
+            {
+              level: 13,
+              proficiencyBonus: '+5',
+              feature: 'Song of Rest (d10)',
+              knownSpells: 16,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 14,
+              proficiencyBonus: '+5',
+              feature: 'Magical Secrets, Bard College feature',
+              knownSpells: 18,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, '-', '-']
+            },
+            {
+              level: 15,
+              proficiencyBonus: '+5',
+              feature: 'Bardic Inspiration (d12)',
+              knownSpells: 19,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 16,
+              proficiencyBonus: '+5',
+              feature: "Ability Score Improvement", 
+              knownSpells: 19,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, '-']
+            },
+            {
+              level: 17,
+              proficiencyBonus: '+6',
+              feature: 'Song of Rest (d12)',
+              knownSpells: 20,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 2, 1, 1, 1, 1]
+            },
+            {
+              level: 18,
+              proficiencyBonus: '+6',
+              feature: "Magical Secrets",
+              knownSpells: 22,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 3, 1, 1, 1, 1]
+            },
+            {
+              level: 19,
+              proficiencyBonus: '+6',
+              feature: "Ability Score Improvement",
+              knownSpells: 22,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 3, 2, 1, 1, 1]
+            },
+            {
+              level: 20,
+              proficiencyBonus: '+6',
+              feature: "Superior Inspiration",
+              knownSpells: 22,
+              cantrips: 4,
+              spellSlots: [4, 3, 3, 3, 3, 2, 2, 1, 1]
+            }
+          ],
+            similarClasses: {
+            firstName: 'Wizard',
+            firstDescription: ' Spellcasters, No Armor, Small Hit Die, Huge Variety Of Spells',
+            secondName: 'Sorcerer',
+            secondDescription: ' Spellcasters, Huge Variety Of Spells, Both Require Charisma',
+            },
+            suitableRaces: {
+              firstName: 'Half-Elf',
+              firstDescription: ' +2 Charisma, +1 to Two Ability Scores',
+              secondName: 'Tiefling',
+              secondDescription: ' +2 Charisma',
+            },
         },
         'Barbarian':{
           name: 'Barbarian',
@@ -1509,8 +2290,14 @@ export default {
           spellsKnown: false,
           sorceryPoints: false,
           hasCantrips: false,
+          hasSneakAttack: false,
+          hasRages: true,
+          hasRageDamage: true,
+          hasMartialArts: false,
+          hasKiPoints: false,
+          hasUnarmoredMovement: false,
           image: "https://i.pinimg.com/564x/4a/a0/b7/4aa0b7c762d03855391f8c40ab140b6e.jpg",
-          introduction: 'self-explanatory',
+          introduction: 'For some, their rage springs from a communion with fierce animal spirits. Others draw from a roiling reservoir of anger at a world full of pain. For every barbarian, rage is a power that fuels not just a battle frenzy but also uncanny reflexes, resilience, and feats of strength. You must have a Strength score of 13 or higher in order to multiclass in or out of this class.',
           hitPoints: {
             hitDice: '1d12 per barbarian level',
             hitPointsAtFirstLevel: '12 + your Constitution modifier',
@@ -1522,7 +2309,161 @@ export default {
           tools: 'None',
           savingThrows: 'Strength, Constitution',
           skills: 'Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival',
-          }
+          },
+          infoForEachLevel: [
+            {
+              level: 1,
+              proficiencyBonus: '+2',
+              rage: 2,
+              rageDamage: '+2',
+              feature: "Rage, Unarmored Defense",
+            },
+            {
+              level: 2,
+              proficiencyBonus: '+2',
+              rage: 2,
+              rageDamage: '+2',
+              feature: "Reckless Attack, Danger Sense",
+            },
+            {
+              level: 3,
+              proficiencyBonus: '+2',
+              rage: 3,
+              rageDamage: '+2',
+              feature: 'Primal Path',
+            },
+            {
+              level: 4,
+              proficiencyBonus: '+2',
+              rage: 3,
+              rageDamage: '+2',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 5,
+              proficiencyBonus: '+3',
+              rage: 3,
+              rageDamage: '+2',
+              feature: "Extra Attack, Fast Movement",
+            },
+            {
+              level: 6,
+              proficiencyBonus: '+3',
+              rage: 4,
+              rageDamage: '+2',
+              feature: "Path feature",
+            },
+            {
+              level: 7,
+              proficiencyBonus: '+3',
+              rage: 4,
+              rageDamage: '+2',
+              feature: 'Feral Instinct',
+            },
+            {
+              level: 8,
+              proficiencyBonus: '+3',
+              rage: 4,
+              rageDamage: '+2',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 9,
+              proficiencyBonus: '+4',
+              rage: 4,
+              rageDamage: '+3',
+              feature: 'Brutal Critical (1 die)',
+            },
+            {
+              level: 10,
+              proficiencyBonus: '+4',
+              rage: 4,
+              rageDamage: '+3',
+              feature: "Path feature",
+            },
+            {
+              level: 11,
+              proficiencyBonus: '+4',
+              rage: 4,
+              rageDamage: '+3',
+              feature: "Relentless Rage", 
+            },
+            {
+              level: 12,
+              proficiencyBonus: '+4',
+              rage: 5,
+              rageDamage: '+3',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 13,
+              proficiencyBonus: '+5',
+              rage: 5,
+              rageDamage: '+3',
+              feature: 'Brutal Critical (2 dice)',
+            },
+            {
+              level: 14,
+              proficiencyBonus: '+5',
+              rage: 5,
+              rageDamage: '+3',
+              feature: "Path feature",
+            },
+            {
+              level: 15,
+              proficiencyBonus: '+5',
+              rage: 5,
+              rageDamage: '+3',
+              feature: 'Persistent Rage',
+            },
+            {
+              level: 16,
+              proficiencyBonus: '+5',
+              rage: 5,
+              rageDamage: '+4',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 17,
+              proficiencyBonus: '+6',
+              rage: 6,
+              rageDamage: '+4',
+              feature: "Brutal Critical (3 dice)",
+            },
+            {
+              level: 18,
+              proficiencyBonus: '+6',
+              rage: 6,
+              rageDamage: '+4',
+              feature: "Indomitable Might",
+            },
+            {
+              level: 19,
+              proficiencyBonus: '+6',
+              rage: 6,
+              rageDamage: '+4',
+              feature: "Ability Score Improvement",
+            },
+            {
+              level: 20,
+              proficiencyBonus: '+6',
+              rage: 'Unlimited',
+              rageDamage: '+4',
+              feature: "Primal Champion",
+            }
+          ],
+          similarClasses: {
+            firstName: 'Fighter',
+            firstDescription: ' Both Require Strength, Similar Aesthetic, Similar Weapons',
+            secondName: 'Paladin',
+            secondDescription: ' Both Require Strength, Similar Weapons',
+          },
+          suitableRaces: {
+            firstName: 'Half-Orc',
+            firstDescription: ' +2 Strength',
+            secondName: 'Dragonborn',
+            secondDescription: ' +2 Strength',
+          },
         },
       },
       allRaces:{
