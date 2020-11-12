@@ -3,28 +3,36 @@
     <template v-if="pageChanger === 'home'"> 
       <div class= "row">
         <div class="col-12">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">DnD Character Creation</a>
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" v-on:click="pageChanger = 'home'">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allClasses'">Classes <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allRaces'">Races <span class="sr-only">(current)</span></a>
+                </li>
+                <template v-if="finalClass !== ''">
+                  <li>
+                    <h2 class="navbar-final-class">{{finalClass}}</h2>
+                  </li>
+                </template>
+                <template v-if="finalRace !== ''">
+                  <li>
+                    <h2 class="navbar-final-race">{{finalRace}}</h2>
+                  </li>
+                </template>
+                <template v-if="finalRace !== '' && finalClass !== ''">
+                  <li>
+                    <button v-on:click="pageChanger = 'calc'" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Calculate Ability Scores
+                    </button>
+                  </li>
+                </template>
               </ul>
-            </div>
           </nav>
         </div>
       </div>
@@ -41,28 +49,36 @@
       <div class="all-classes">
         <div class="row">
           <div class="col-12">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">DnD Character Creation</a>
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" v-on:click="pageChanger = 'home'">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allClasses'">Classes <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allRaces'">Races <span class="sr-only">(current)</span></a>
+                </li>
+                <template v-if="finalClass !== ''">
+                  <li>
+                    <h2 class="navbar-final-class">{{finalClass}}</h2>
+                  </li>
+                </template>
+                <template v-if="finalRace !== ''">
+                  <li>
+                    <h2 class="navbar-final-race">{{finalRace}}</h2>
+                  </li>
+                </template>
+                <template v-if="finalRace !== '' && finalClass !== ''">
+                  <li>
+                    <button v-on:click="pageChanger = 'calc'" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Calculate Ability Scores
+                    </button>
+                  </li>
+                </template>
               </ul>
-            </div>
           </nav>
         </div>
         </div>
@@ -87,28 +103,36 @@
       <div class="all-races">
         <div class="row">
           <div class="col-12">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">DnD Character Creation</a>
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" v-on:click="pageChanger = 'home'">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allClasses'">Classes <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allRaces'">Races <span class="sr-only">(current)</span></a>
+                </li>
+                <template v-if="finalClass !== ''">
+                  <li>
+                    <h2 class="navbar-final-class">{{finalClass}}</h2>
+                  </li>
+                </template>
+                <template v-if="finalRace !== ''">
+                  <li>
+                    <h2 class="navbar-final-race">{{finalRace}}</h2>
+                  </li>
+                </template>
+                <template v-if="finalRace !== '' && finalClass !== ''">
+                  <li>
+                    <button v-on:click="pageChanger = 'calc'" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Calculate Ability Scores
+                    </button>
+                  </li>
+                </template>
               </ul>
-            </div>
           </nav>
         </div>
         </div>
@@ -133,30 +157,38 @@
       <div class="class-page">
         <div class="row">
           <div class="col-12">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <a class="navbar-brand" href="#">Navbar</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">DnD Character Creation</a>
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'home'">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allClasses'">Classes <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allRaces'">Races <span class="sr-only">(current)</span></a>
+                </li>
+                <template v-if="finalClass !== ''">
+                  <li>
+                    <h2 class="navbar-final-class">{{finalClass}}</h2>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown link
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                </template>
+                <template v-if="finalRace !== ''">
+                  <li>
+                    <h2 class="navbar-final-race">{{finalRace}}</h2>
                   </li>
-                </ul>
-              </div>
-            </nav>
-          </div>
+                </template>
+                <template v-if="finalRace !== '' && finalClass !== ''">
+                  <li>
+                    <button v-on:click="pageChanger = 'calc'" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Calculate Ability Scores
+                    </button>
+                  </li>
+                </template>
+              </ul>
+          </nav>
+        </div>
         </div>
         <div class="row">
             <div class="container class-page">
@@ -167,43 +199,45 @@
                     <p class="class-mini-description-on-class-page">{{allClasses[pageChanger].introduction}}</p>
                   </div>
                   <div class="row class-table">
-                    <table class="table dnd-class-table">
-                      <thead class="thead-dark header-of-class-table">
-                        <tr>
-                          <th scope="col" colspan=2 style='text-align: start'>The {{allClasses[pageChanger].name}}</th>
-                          <th v-if="allClasses[pageChanger].type == 'Spellcaster' || allClasses[pageChanger].type == 'halfSpellcaster'" scope="col" colspan=11 style="padding-left: 3%;">Spell Slots per Spell Level</th>
-                          <th v-else scope="col" colspan=11 style="padding-left: 3%;"></th>
-                        </tr>
-                        <tr class="thead-dark secondary-header-of-class-table">
-                          <th>Level</th>
-                          <template v-for="(item, index) in allClasses[pageChanger].levels[1]"> 
-                              <template v-if="index === 'spellSlots'">
-                                <template v-for="(slot, slotIndex) in item">
-                                  <th v-bind:key="slotIndex">{{writeIndexAsTitleOfSlot(slotIndex)}}</th>
-                                </template>
-                            </template>
-                            <template v-else>
-                              <th v-bind:key="item.feature">{{makeReadable(index)}}</th>
-                            </template>
-                          </template>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="(levelFeatures, levelNumber) in allClasses[pageChanger].levels" v-bind:key="levelNumber">                         
-                          <td>{{levelNumber}}</td>
-                          <template v-for="(value, index) in levelFeatures"> 
-                            <template v-if="index === 'spellSlots'">
-                              <template v-for="(slot, slotIndex) in value">
-                                <th v-bind:key="slotIndex">{{slot}}</th>
+                    <div class="table-scroller">
+                      <table class="table dnd-class-table">
+                        <thead class="thead-dark header-of-class-table">
+                          <tr>
+                            <th scope="col" colspan=2 style='text-align: start'>The {{allClasses[pageChanger].name}}</th>
+                            <th v-if="allClasses[pageChanger].type == 'Spellcaster' || allClasses[pageChanger].type == 'halfSpellcaster'" scope="col" colspan=11 style="padding-left: 3%;">Spell Slots per Spell Level</th>
+                            <th v-else scope="col" colspan=11 style="padding-left: 3%;"></th>
+                          </tr>
+                          <tr class="thead-dark secondary-header-of-class-table">
+                            <th>Level</th>
+                            <template v-for="(item, index) in allClasses[pageChanger].levels[1]"> 
+                                <template v-if="index === 'spellSlots'">
+                                  <template v-for="(slot, slotIndex) in item">
+                                    <th v-bind:key="slotIndex">{{writeIndexAsTitleOfSlot(slotIndex)}}</th>
+                                  </template>
+                              </template>
+                              <template v-else>
+                                <th v-bind:key="item.feature">{{makeReadable(index)}}</th>
                               </template>
                             </template>
-                            <template v-else>
-                              <td v-bind:key="index">{{value}}</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(levelFeatures, levelNumber) in allClasses[pageChanger].levels" v-bind:key="levelNumber">                         
+                            <td>{{levelNumber}}</td>
+                            <template v-for="(value, index) in levelFeatures"> 
+                              <template v-if="index === 'spellSlots'">
+                                <template v-for="(slot, slotIndex) in value">
+                                  <th v-bind:key="slotIndex">{{slot}}</th>
+                                </template>
+                              </template>
+                              <template v-else>
+                                <td v-bind:key="index">{{value}}</td>
+                              </template>
                             </template>
-                          </template>
-                        </tr>                      
-                      </tbody>
-                    </table>
+                          </tr>                      
+                        </tbody>
+                      </table>
+                    </div>
                     <div class="class-detailed-description">
                     <h1 class="class-detailed-description-title">Class Features</h1>
                     <h5 class="class-detailed-description-mini-title">Hit Points</h5>
@@ -281,34 +315,42 @@
       <div class="race-page">
         <div class="row">
           <div class="col-12">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">DnD Character Creation</a>
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" v-on:click="pageChanger = 'home'">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allClasses'">Classes <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active">
+                  <a class="nav-link" v-on:click="pageChanger = 'allRaces'">Races <span class="sr-only">(current)</span></a>
+                </li>
+                <template v-if="finalClass !== ''">
+                  <li>
+                    <h2 class="navbar-final-class">{{finalClass}}</h2>
+                  </li>
+                </template>
+                <template v-if="finalRace !== ''">
+                  <li>
+                    <h2 class="navbar-final-race">{{finalRace}}</h2>
+                  </li>
+                </template>
+                <template v-if="finalRace !== '' && finalClass !== ''">
+                  <li>
+                    <button v-on:click="pageChanger = 'calc'" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Calculate Ability Scores
+                    </button>
+                  </li>
+                </template>
               </ul>
-            </div>
           </nav>
         </div>
         </div>
-        <div class="row">
+        <div class="row individual-race-content">
           <div class="container">
-            <div class="row">
+            <div class="row individual-race-content">
               <div class="col-9 races-main-description">
                 <div class="introduction-to-race">
                   <h1 class="race-title-on-race-page">{{allRaces[pageChanger].name}}</h1>
@@ -376,6 +418,225 @@
         </div>
       </div>
     </template>
+    <template v-if="pageChanger === 'calc'">
+       <div class="calc">
+        <div class="row">
+          <div class="col-12">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <a class="navbar-brand" href="#">DnD Character Creation</a>
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" v-on:click="pageChanger = 'home'">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" v-on:click="pageChanger = 'allClasses'">Classes <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" v-on:click="pageChanger = 'allRaces'">Races <span class="sr-only">(current)</span></a>
+                  </li>
+                  <template v-if="finalClass !== ''">
+                    <li>
+                      <h2 class="navbar-final-class">{{finalClass}}</h2>
+                    </li>
+                  </template>
+                  <template v-if="finalRace !== ''">
+                    <li>
+                      <h2 class="navbar-final-race">{{finalRace}}</h2>
+                    </li>
+                  </template>
+                  <template v-if="finalRace !== '' && finalClass !== ''">
+                    <li>
+                      <button v-on:click="pageChanger = 'calc'" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        Calculate Ability Scores
+                      </button>
+                    </li>
+                  </template>
+                </ul>
+            </nav>
+          </div>
+        </div>
+        <div v-if="finalRace === 'Half-Elf' && checkRacialBonusesAmount()" class="row">
+            <div class="container">
+                <div class="row">
+                  <h4>To play as a Half-Elf you need to choose two additional Racial Bonuses:</h4>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <button v-on:click="addToHalfElfRacialBonuses('Strength')" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Strength
+                    </button>
+                  </div> 
+                  <div class="col-4">
+                    <button v-on:click="addToHalfElfRacialBonuses('Dexterity')" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Dexterity
+                    </button>
+                  </div> 
+                  <div class="col-4">
+                    <button v-on:click="addToHalfElfRacialBonuses('Constitution')" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Constitution
+                    </button>
+                  </div> 
+                </div> 
+                <div class="row">
+                  <div class="col-6">
+                    <button v-on:click="addToHalfElfRacialBonuses('Intelligence')" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Intelligence
+                    </button>
+                  </div> 
+                  <div class="col-6">
+                    <button v-on:click="addToHalfElfRacialBonuses('Wisdom')" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Wisdom
+                    </button>
+                  </div>  
+                </div>
+            </div>  
+        </div>   
+        <div class="row">
+          <div class="container">
+            <div class="row">
+              <div class="col-2">
+                <p>Attribute</p>
+              </div>
+              <div class="col-2">
+                <p>Ability Score</p>
+              </div>
+              <div class="col-1">
+              </div>
+              <div class="col-2">
+                <p>Racial Bonus</p>
+              </div>
+              <div class="col-1">
+              </div>
+              <div class="col-2">
+                <p>Total Score</p>
+              </div>
+              <div class="col-1">
+                <p>Ability Modifier</p>
+              </div>
+              <div class="col-1">
+                <p>Point Cost</p>
+              </div>
+            </div>
+            <div v-for="(attribute, index) in attributes"  v-bind:key="index" class="row">
+                <div class="col-2">
+                    <p>{{attribute}}</p>
+                </div>
+                <div class="col-2">
+                <div class="row">
+                    <div class="col-9">
+                        <p>{{attributesScores[attribute]}}</p>
+                    </div>
+                    <div class="col-3">
+                    <div class="row">
+                        <button v-on:click="(attributesScores[attribute] < 15) ? attributesScores[attribute]++ : attributesScores[attribute]" type="button" class="btn btn-primary btn-lg recommendations ability-score-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        +
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button v-on:click="(attributesScores[attribute] > 8) ? attributesScores[attribute]-- : attributesScores[attribute]" type="button" class="btn btn-primary btn-lg recommendations ability-score-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        -
+                        </button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-1"> 
+                    <p> + </p>
+                </div>
+                <div class="col-2">
+                    <p>{{getRaceBonus(attribute)}}</p>
+                </div>
+                <div class="col-1">
+                    <p> = </p>
+                </div>
+                <div class="col-2">
+                    <p>{{getTotalScore(getRaceBonus(attribute), attributesScores[attribute], attribute)}}</p>
+                </div>
+                <div class="col-1">
+                    <p>{{getModifier(attributesTotalScores[attribute], attribute)}}</p>
+                </div>
+                <div class="col-1">
+                    <p>{{getPointScore(attributesScores[attribute] )}}</p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div>
+                    <label class="character-name-label" for="fname">Character Name:</label>
+                </div>
+                <div>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                </div>
+            </div>
+            <div class="col-6">
+                <button v-on:click="pageChanger = 'finishedSheet'" type="button" class="btn btn-primary btn-lg recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    Finish Character Creation
+                </button>
+            </div>
+        </div>
+       </div>
+    </template>
+    <template v-if="pageChanger === 'finishedSheet'">
+        <div class="finishedSheet">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">DnD Character Creation</a>
+                        <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" v-on:click="pageChanger = 'home'">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" v-on:click="pageChanger = 'allClasses'">Classes <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" v-on:click="pageChanger = 'allRaces'">Races <span class="sr-only">(current)</span></a>
+                        </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                          <h4>Name</h4>
+                        </div>
+                        <div class="col-4">
+                          <h4>{{finalRace}}</h4>
+                        </div>
+                        <div class="col-4">
+                          <h4>{{finalClass}}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                          <h4>Ability</h4>
+                        </div>
+                        <div class="col-4">
+                          <h4>Score</h4>
+                        </div>
+                        <div class="col-4">
+                          <h4>Modifier</h4>
+                        </div>
+                    </div>
+                    <div v-for="(value, name) in attributesTotalScores"  v-bind:key="name" class="row">
+                        <div class="col-4">
+                          <h4>{{name}}:</h4>
+                        </div>
+                        <div class="col-4">
+                          <h4>{{value}}</h4>
+                        </div>
+                        <div class="col-4">
+                          <h4>{{attributesModifiers[name]}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
   </div>
 </template>
 
@@ -390,8 +651,13 @@ export default {
   data () {
     return {
       pageChanger: 'home',
-      finalClass: '',
-      finalRace: '',
+      finalClass: 'Fighter',
+      finalRace: 'Half-Elf',
+      pointCounter: 8,
+      attributes: ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'],
+      attributesScores: {'Strength': 8 ,  'Dexterity': 8 , 'Constitution' : 8, 'Intelligence': 8 , 'Wisdom': 8, 'Charisma': 8},
+      attributesModifiers: {'Strength': 8 ,  'Dexterity': 8 , 'Constitution' : 8, 'Intelligence': 8 , 'Wisdom': 8, 'Charisma': 8},
+      attributesTotalScores: {'Strength': 8 ,  'Dexterity': 8 , 'Constitution' : 8, 'Intelligence': 8 , 'Wisdom': 8, 'Charisma': 8},
       allClasses: {
         'Fighter':{
           name: 'Fighter',
@@ -2309,6 +2575,7 @@ export default {
           speed: 'Your base walking speed is 30 feet.',
           languages: 'You can read, speak, and write Common and Draconic.',
           abilityScoreIncrease: 'Your Strength score increases by 2, and your Charisma score increases by 1.',
+          racialBonus: {'Strength': 2, 'Charisma': 1},
           similarRaces: {
             firstName: 'Half-Orc',
             firstDescription: ' +2 Strength',
@@ -2332,6 +2599,7 @@ export default {
           speed: 'Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor.',
           languages: 'You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak.',
           abilityScoreIncrease: 'Your Constitution score increases by 2.',
+          racialBonus: {'Constitution': 2},
           similarRaces: {
             firstName: 'Human',
             firstDescription: ' +1 to All Ability Scores',
@@ -2355,6 +2623,7 @@ export default {
           speed: 'Your base walking speed is 30 feet.',
           languages: 'You can speak, read, and write Common and Elven.',
           abilityScoreIncrease: 'Your Dexterity score increases by 2.',
+          racialBonus: {'Dexterity': 2},
           similarRaces: {
             firstName: 'Halfling',
             firstDescription: ' +2 Dexterity',
@@ -2378,9 +2647,10 @@ export default {
           speed: 'Your base walking speed is 25 feet.',
           languages: 'You can read, speak, and write Common and Gnomish.',
           abilityScoreIncrease: 'Your Intelligence score increases by 2.',
+          racialBonus: {'Intelligence': 2},
           similarRaces: {
             firstName: 'Tiefling',
-            firstDescription: ' +2 Intelligence',
+            firstDescription: ' +1 Intelligence',
             secondName: 'Half-Elf',
             secondDescription: ' +1 to Two Ability Scores, +2 to Charisma',
           },
@@ -2401,6 +2671,8 @@ export default {
           speed: 'Your base walking speed is 30 feet.',
           languages: 'You can read, speak, and write Common, Elven, and one language of your choice.',
           abilityScoreIncrease: 'Your Charisma score increases by 2, and two other ability scores of your choice each increase by 1.',
+          racialBonus: {'Charisma': 2},
+          halfElfExtraAttrs: [],
           similarRaces: {
             firstName: 'Tiefling',
             firstDescription: ' +2 Charisma',
@@ -2424,6 +2696,7 @@ export default {
           speed: 'Your base walking speed is 30 feet.',
           languages: 'You can speak, read, and write Common and Orc. Orc is a harsh, grating language with hard consonants. It has no script of its own but is written in the Dwarvish script.',
           abilityScoreIncrease: 'Your Strength score increases by 2, and your Constitution score increases by 1.',
+          racialBonus: {'Strength': 2, 'Constitution': 1},
           similarRaces: {
             firstName: 'Dragonborn',
             firstDescription: ' +2 Strength',
@@ -2447,6 +2720,7 @@ export default {
           speed: 'Your base walking speed is 25 feet.',
           languages: 'You can speak, read, and write Common and Halfling.',
           abilityScoreIncrease: 'Your Dexterity score increases by 2.',
+          racialBonus: {'Dexterity': 2},
           similarRaces: {
             firstName: 'Elf',
             firstDescription: ' +2 Dexterity',
@@ -2470,6 +2744,7 @@ export default {
           speed: 'Your base walking speed is 30 feet.',
           languages: 'You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.',
           abilityScoreIncrease: 'Your ability scores each increase by 1.',
+          racialBonus: {'Strength': 1, 'Dexterity': 1, 'Constitution': 1, 'Intelligence': 1, 'Wisdom': 1, 'Charisma': 1},
           similarRaces: {
             firstName: 'Dragonborn',
             firstDescription: ' +2 Strength, +1 Charisma',
@@ -2492,7 +2767,8 @@ export default {
           size: 'Tieflings are about the same size and build as humans. Your size is Medium.',
           speed: 'Your base walking speed is 30 feet.',
           languages: 'You can speak, read, and write Common and Infernal.',
-          abilityScoreIncrease: 'Your Charisma score increases by 2.',
+          abilityScoreIncrease: 'Your Charisma score increases by 2 and your Intelligence score increases by 1.',
+          racialBonus: {'Charisma': 2, 'Intelligence': 1},
           similarRaces: {
             firstName: 'Half-Elf',
             firstDescription: ' +2 Charisma',
@@ -2515,6 +2791,13 @@ export default {
   //   }
   // },
   methods: {
+    checkRacialBonusesAmount(){
+        if(this.allRaces[this.finalRace].halfElfExtraAttrs.length < 2){
+            return true;
+        }else{
+            return false;
+        }
+    },
     chooseClass(chosenClass){
       this.pageChanger = chosenClass;
     },
@@ -2561,13 +2844,61 @@ export default {
             console.log(finalWords);
          }
      }
-
      if(finalWords == ''){
        finalWords = oneWord.join('');
      }
-     
-     return finalWords;
-   }
+          return finalWords;
+   },
+    getRaceBonus(ability){
+        if(this.allRaces[this.finalRace].racialBonus.hasOwnProperty(ability) === true){
+            return this.allRaces[this.finalRace].racialBonus[ability];
+        }else if(this.allRaces[this.finalRace].halfElfExtraAttrs.includes(ability) === true){
+            return 1;
+        }else{
+            return 0;
+        }
+    },
+    getModifier(pointCounter, attribute){
+        if(pointCounter === 8 || pointCounter === 9){
+            this.attributesModifiers[attribute] = -1;
+        }else if(pointCounter === 10 || pointCounter === 11){
+            this.attributesModifiers[attribute] = 0;
+        }else if(pointCounter === 12 || pointCounter === 13){
+            this.attributesModifiers[attribute] = 1;
+        }else if(pointCounter === 14 || pointCounter === 15){
+            this.attributesModifiers[attribute] = 2;
+        }else if(pointCounter === 16 || pointCounter === 17){
+            this.attributesModifiers[attribute] = 3;
+        }
+        return this.attributesModifiers[attribute];
+    },
+    getPointScore(pointCounter){
+        if(pointCounter === 8){
+            return 0;
+        }else if(pointCounter === 9){
+            return 1;
+        }else if(pointCounter === 10){
+            return 2;
+        }else if(pointCounter === 11){
+            return 3;
+        }else if(pointCounter === 12){
+            return 4;
+        }else if(pointCounter === 13){
+            return 5;
+        }else if(pointCounter === 14){
+            return 7;
+        }else if(pointCounter === 15){
+            return 9;
+        }
+    },
+    addToHalfElfRacialBonuses(newBonus){
+        this.allRaces[this.finalRace].halfElfExtraAttrs.push(newBonus);
+    },
+    getTotalScore(raceBonus, attributeScore, attribute){
+        let result = raceBonus + attributeScore;
+        this.attributesTotalScores[attribute] = result;
+        return result;
+    }
   }
 }
 </script>
@@ -2739,5 +3070,31 @@ p{
 }
 .classes-container, .races-container{
   background-color:  #3e3731;
+}
+.table-scroller{
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.individual-race-content{
+  height: 100%;
+}
+.navbar-final-class, .navbar-final-race{
+  padding-left: 200px;
+  padding-right: 100px;
+}
+.navbar-calc-btn{
+  margin-left: 200px;
+}
+.ability-score-btn{
+  height: 20px;
+  width: 20px;
+  padding: 0px;
+  border: 0px;
+  margin: 3px;
+  text-align: center;
+}
+.character-name-label{
+    color: #000;
 }
 </style>
