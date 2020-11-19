@@ -1,0 +1,294 @@
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 0px;
+  height: 100%;
+  background-color: #3f473a;
+}
+html,
+body,
+.col-6 {
+  height: 100%;
+}
+html {
+  overflow-x: hidden;
+}
+.front-page-class {
+  height: 100%;
+  background-color: #3e3731;
+}
+.front-page-race {
+  height: 100%;
+  background-color: #3f473a;
+}
+.front-page-class-button {
+  padding-top: 8px;
+  margin-top: 45%;
+}
+.front-page-race-button {
+  padding-top: 8px;
+  margin-top: 45%;
+}
+.all-classes-page-title,
+.all-races-page-title {
+  height: 5%;
+  padding-left: 50%;
+}
+.img-classes-thumbnails {
+  height: 400px;
+  width: 250px;
+}
+.figure-caption {
+  width: 50%;
+  margin-left: 25%;
+  color: #000;
+  font-size: 17px;
+}
+.dnd-classes-title,
+.dnd-races-title {
+  margin-left: -9%;
+  color: #151515;
+}
+.all-classes,
+.all-races {
+  background-color: #3f473a;
+}
+.btn-primary {
+  color: #989a9c;
+  font-weight: bold;
+  background-color: #462025;
+  border-color: #462025;
+}
+.btn-primary:hover,
+.btn-primary:active {
+  background-color: #584447;
+  border-color: #2b1417;
+}
+html {
+  background-color: #3f473a;
+}
+h2,
+h3,
+h4 {
+  color: #000;
+}
+.classes-sidebar-recommendations,
+.races-sidebar-recommendations {
+  background-color: #3e3731;
+  border-left: 2px solid #151515 !important;
+  border-right: 2px solid #151515 !important;
+}
+.recommendations {
+  padding: 5px;
+}
+.recommendations:hover,
+.recommendations:active {
+  background-color: #2b1417;
+  border-color: #2b1417;
+}
+p {
+  color: #000;
+}
+.class-title-on-class-page,
+.race-title-on-race-page {
+  color: #151515;
+  font-weight: bold;
+}
+.class-detailed-description,
+.race-detailed-description {
+  text-align: left;
+}
+.class-table {
+  height: 75%;
+}
+.class-detailed-description-title {
+  color: #000;
+  padding-bottom: 30px;
+}
+.race-detailed-description-title {
+  font-weight: bold;
+  color: #151515;
+}
+.class-detailed-description-mini-title {
+  color: #000;
+  font-weight: bold;
+}
+.race-detailed-description-mini-title {
+  font-weight: bold;
+  color: #151515;
+}
+.class-mini-description-on-class-page {
+  text-align: left;
+  font-weight: bold;
+}
+.race-mini-description-on-race-page {
+  text-align: left;
+  font-weight: bold;
+  padding-bottom: 40px;
+}
+.header-of-class-table th {
+  color: rgb(20, 19, 19) !important;
+}
+.secondary-header-of-class-table th {
+  color: rgb(20, 19, 19) !important;
+}
+.dnd-class-table {
+  color: rgb(27, 27, 27) !important;
+  font-weight: bold !important;
+}
+.dnd-class-table th {
+  border-top: 1px solid #6c7075 !important;
+}
+.dnd-class-table td {
+  border-top: 1px solid #6c7075 !important;
+}
+.dnd-class-table thead th {
+  border-bottom: 2px solid #6c7075 !important;
+}
+.similar-classes,
+.suitable-races,
+.similar-races,
+.suitable-classes {
+  padding-bottom: 7px;
+  padding-top: 50px;
+  color: #151515;
+  font-weight: bold;
+}
+.similar-classes-example,
+.suitable-races-example,
+.similar-races-example,
+.suitable-classes-example {
+  padding-top: 20px;
+  color: #15191d;
+  font-weight: bold;
+}
+.suitable-races-example-description,
+.similar-classes-example-description,
+.suitable-classes-example-description,
+.similar-races-example-description {
+  color: #15191d;
+}
+.classes-main-description,
+.races-main-description {
+  padding-right: 30px;
+  padding-top: 40px;
+}
+.class-detailed-description {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+.race-page {
+  height: 100%;
+}
+.initial-select {
+  height: 100%;
+}
+.classes-container,
+.races-container {
+  background-color: #3e3731;
+}
+.table-scroller {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.individual-race-content {
+  height: 100%;
+}
+.navbar-final-class,
+.navbar-final-race {
+  padding-left: 200px;
+  padding-right: 100px;
+  font-style: italic;
+}
+.navbar-calc-btn {
+  margin-left: 200px;
+}
+.ability-score-btn {
+  height: 20px;
+  width: 20px;
+  padding: 0px;
+  border: 0px;
+  margin: 3px;
+  text-align: center;
+}
+.character-name-label {
+  color: #000;
+}
+.half-elf-btn {
+  margin-right: 50px;
+  margin-left: 50px;
+}
+.hal-elf-buttons-row,
+.ability-score-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-brand {
+  font-weight: bolder;
+}
+.final-row-calc {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.char-name-form {
+  margin-left: 40px;
+}
+.point-table {
+  width: 48%;
+}
+.tables-holder {
+  display: flex;
+  justify-content: space-between;
+}
+.row-left-points {
+  display: flex;
+  justify-content: flex-end;
+}
+.final-page-title-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+.final-page-title {
+  font-style: italic;
+  font-weight: bold;
+  margin-left: 30px;
+  margin-right: 30px;
+  color: #000;
+}
+.final-page-title-small {
+  margin-top: 12px;
+  margin-right: 1px;
+}
+.final-sheet-titles {
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.final-sheet-info {
+  font-style: italic;
+  color: #000;
+}
+/* .scores-and-modifiers-div {
+  border: 2px solid grey;
+  border-radius: 15px 50px;
+} */
+.final-sheet-container {
+  height: 100%;
+}
+.final-sheet-explanation {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  width: 60%;
+}
+.final-sheet-explanation h5 {
+  color: #000;
+}
