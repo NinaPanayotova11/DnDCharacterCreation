@@ -27,7 +27,7 @@
               <div class="row all-classes-page-thumbnails">
                   <div v-for="dndClass in allClasses" :key="dndClass.name" class="figure col-3">
                       <img :src="dndClass.image" class="figure-img img-fluid rounded img-classes-thumbnails" alt="A generic square placeholder image with rounded corners in a figure.">
-                      <button v-on:click="chooseClass(dndClass.name)" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">{{dndClass.name}}</button>
+                      <button v-on:click="chooseClass(dndClass.name)" type="button" class="btn btn-primary all-classes-btn" data-toggle="button" aria-pressed="false" autocomplete="off">{{dndClass.name}}</button>
                   </div>
               </div>
             </div>
@@ -46,7 +46,7 @@
               <div class="row all-races-page-thumbnails">
                 <div v-for="dndRace in allRaces" :key="dndRace.name" class="figure col-3">
                     <img :src="dndRace.image" class="figure-img img-fluid rounded img-classes-thumbnails" alt="A generic square placeholder image with rounded corners in a figure.">
-                    <button v-on:click="chooseRace(dndRace.name)" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">{{dndRace.name}}</button>
+                    <button v-on:click="chooseRace(dndRace.name)" type="button" class="btn btn-primary all-races-btn" data-toggle="button" aria-pressed="false" autocomplete="off">{{dndRace.name}}</button>
                 </div>
               </div>
             </div>
@@ -69,8 +69,8 @@
                       <table class="table dnd-class-table">
                         <thead class="thead-dark header-of-class-table">
                           <tr>
-                            <th scope="col" colspan=2 style='text-align: start'>The {{allClasses[pageChanger].name}}</th>
-                            <th v-if="allClasses[pageChanger].type == 'Spellcaster' || allClasses[pageChanger].type == 'halfSpellcaster'" scope="col" colspan=11 style="padding-left: 3%;">Spell Slots per Spell Level</th>
+                            <th scope="col" :colspan=allClasses[pageChanger].colspanBeforeSlots style='text-align: start'>The {{allClasses[pageChanger].name}}</th>
+                            <th class="spell-slots" v-if="allClasses[pageChanger].type == 'Spellcaster' || allClasses[pageChanger].type == 'halfSpellcaster'" scope="col" :colspan=allClasses[pageChanger].colspanSlots >Spell Slots per Spell Level</th>
                             <th v-else scope="col" colspan=11 style="padding-left: 3%;"></th>
                           </tr>
                           <tr class="thead-dark secondary-header-of-class-table">
@@ -105,40 +105,40 @@
                       </table>
                     </div>
                     <div class="class-detailed-description">
-                    <h1 class="class-detailed-description-title">Class Features</h1>
-                    <h5 class="class-detailed-description-mini-title">Hit Points</h5>
-                      <p>
-                        <strong>Hit Dice:</strong>
-                        {{allClasses[pageChanger].hitPoints.hitDice}}
-                        <br>
-                        <strong>Hit Points at 1st Level:</strong>
-                        {{allClasses[pageChanger].hitPoints.hitPointsAtFirstLevel}}
-                        <br>
-                        <strong>Hit Points at Higher Levels:</strong>
-                        {{allClasses[pageChanger].hitPoints.hitPointsAtHigherLevels}}
-                        <br>
-                      </p>
-                    <h5 class="class-detailed-description-mini-title">Proficiencies</h5>
-                      <p>
-                        <strong>Armor:</strong>
-                        {{allClasses[pageChanger].proficiencies.armor}}
-                        <br>
-                        <strong>Weapons:</strong>
-                        {{allClasses[pageChanger].proficiencies.weapons}}
-                        <br>
-                        <strong>Tools:</strong>
-                        {{allClasses[pageChanger].proficiencies.tools}}
-                        <br>
-                        <strong>Saving Throws:</strong>
-                        {{allClasses[pageChanger].proficiencies.savingThrows}}
-                        <br>
-                        <strong>Skills:</strong>
-                        {{allClasses[pageChanger].proficiencies.skills}}
-                        <br>
-                      </p>
-                      <button v-on:click="finalChoiceOfClass(allClasses[pageChanger].name)" type="button" class="btn btn-primary btn-lg recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">
-                        Choose {{allClasses[pageChanger].name}}
-                      </button>
+                        <h1 class="class-detailed-description-title">Class Features</h1>
+                        <h5 class="class-detailed-description-mini-title">Hit Points</h5>
+                        <p>
+                            <strong>Hit Dice:</strong>
+                            {{allClasses[pageChanger].hitPoints.hitDice}}
+                            <br>
+                            <strong>Hit Points at 1st Level:</strong>
+                            {{allClasses[pageChanger].hitPoints.hitPointsAtFirstLevel}}
+                            <br>
+                            <strong>Hit Points at Higher Levels:</strong>
+                            {{allClasses[pageChanger].hitPoints.hitPointsAtHigherLevels}}
+                            <br>
+                        </p>
+                        <h5 class="class-detailed-description-mini-title">Proficiencies</h5>
+                        <p>
+                            <strong>Armor:</strong>
+                            {{allClasses[pageChanger].proficiencies.armor}}
+                            <br>
+                            <strong>Weapons:</strong>
+                            {{allClasses[pageChanger].proficiencies.weapons}}
+                            <br>
+                            <strong>Tools:</strong>
+                            {{allClasses[pageChanger].proficiencies.tools}}
+                            <br>
+                            <strong>Saving Throws:</strong>
+                            {{allClasses[pageChanger].proficiencies.savingThrows}}
+                            <br>
+                            <strong>Skills:</strong>
+                            {{allClasses[pageChanger].proficiencies.skills}}
+                            <br>
+                        </p>
+                        <button v-on:click="finalChoiceOfClass(allClasses[pageChanger].name)" type="button" class="btn btn-primary btn-lg recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            Choose {{allClasses[pageChanger].name}}
+                        </button>
                     </div>
                   </div>  
                 </div>
@@ -207,7 +207,7 @@
                       <br>
                     </p>
                   <h5 class="race-detailed-description-mini-title">Ability Score Increase: {{allRaces[pageChanger].abilityScoreIncrease}}</h5>
-                  <button v-on:click="finalChoiceOfRace(allRaces[pageChanger].name)" type="button" class="btn btn-primary btn-lg recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  <button v-on:click="finalChoiceOfRace(allRaces[pageChanger].name)" type="button" class="btn btn-primary btn-lg recommendations choose-race-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
                     Choose {{allRaces[pageChanger].name}}
                   </button>
                 </div>
@@ -259,65 +259,21 @@
             :calculatorCharacterName="characterName" 
             :calculatorAttributesModifiers="attributesModifiers" 
             :calculatorAttributesTotalScores="attributesTotalScores" 
-            @changePage="getNewPage"
+            @changePageAbilityCalc="getNewPageAbilityCalc"
             @changeCharacterName="getNewCharName"
             @changeAttributesModifiers="getNewMods"
             @changeAttributesTotalScores="getNewTotal">
         </AbilityCalculator>
     </template>
     <template v-if="pageChanger === 'finishedSheet'">
-        <div class="finishedSheet">
-            <div class="row">
-                <div class="container final-sheet-container">
-                    <div class="row final-page-title-div">
-                          <h1 class="final-page-title">{{characterName}}</h1>
-                          <h3 class="final-page-title final-page-title-small">Race: {{finalRace}}</h3>
-                          <h3 class="final-page-title final-page-title-small">Class: {{finalClass}}</h3>
-                    </div>
-                    <div class="row">
-                        <div class = "col-9 scores-and-modifiers-div">
-                            <div class="row">
-                                <div class="col-4">
-                                <h4 class="final-sheet-titles">Ability</h4>
-                                </div>
-                                <div class="col-4">
-                                <h4 class="final-sheet-titles">Score</h4>
-                                </div>
-                                <div class="col-4">
-                                <h4 class="final-sheet-titles">Modifier</h4>
-                                </div>
-                            </div>
-                            <div v-for="(value, name) in attributesTotalScores"  v-bind:key="name" class="row">
-                                <div class="col-4">
-                                <h5 class="final-sheet-info">{{name}}:</h5>
-                                </div>
-                                <div class="col-4">
-                                <h5 class="final-sheet-info">{{value}}</h5>
-                                </div>
-                                <div class="col-4">
-                                <h5 class="final-sheet-info">{{attributesModifiers[name]}}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3 saving-throws-div">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="final-sheet-titles">Saving Throws</h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div v-for="(savingThrow, attribute) in savingThrows" v-bind:key="attribute" class="col-12">
-                                    <h5 class="final-sheet-info">{{attribute}}: {{savingThrow}}</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row final-sheet-explanation">
-                        <h5>*Your Saving Throw for each Ability is equal to your Ability Modifier. If the Class you have chosen has Proficiency in that Saving Throw, the Saving Throw is equal to the sum of the Ability Modifier and the Proficiency Bonus. Both your Proficiency Bonus and the Saving Throws, you are proficient with, are shown in the page of your Class.</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <FinishedSheet
+            :finishedSheetFinalClass="finalClass"
+            :finishedSheetFinalRace="finalRace"
+            :finishedSheetCharacterName="characterName"
+            :finishedSheetAttributesModifiers="attributesModifiers"
+            :finishedSheetAttributesTotalScores="attributesTotalScores"
+            :finishedSheetSavingThrows="savingThrows">
+        </FinishedSheet>
     </template>
   </div>
 </template>
@@ -327,12 +283,14 @@ import dndClassesData from './dndClassesData.json'
 import dndRacesData from './dndRacesData.json'
 import AbilityCalculator from './components/AbilityCalculator'
 import NavBar from './components/NavBar'
+import FinishedSheet from './components/FinishedSheet'
 
 export default {
   name: 'App',
   components: {
         AbilityCalculator,
-        NavBar
+        NavBar,
+        FinishedSheet
   },
   data () {
     return {
@@ -349,15 +307,18 @@ export default {
     }
   },
   methods: {
+    // getNewPageHome(newPage){
+    //     this.pageChanger = newPage;
+    // },
     getNewPageNavBar(newPage){
         this.pageChanger = newPage; 
     },
-    getNewPage(newPage){
+    getNewPageAbilityCalc(newPage){
         this.pageChanger = newPage;     
-        this.getSavingThrowsBonuses(this.allClasses[this.finalClass].proficiencies.savingThrows);
     },
     getNewMods(newMods){
-        this.attributesModifiers = newMods;  
+        this.attributesModifiers = newMods; 
+        this.getSavingThrows(this.attributesModifiers, this.characterSavingThrowsBonuses);
     },
     getNewTotal(newTotal){
         this.attributesTotalScores = newTotal;  
@@ -367,9 +328,11 @@ export default {
     },
     getSavingThrowsBonuses(twoWords){
         this.characterSavingThrowsBonuses = twoWords.split(", ");
-        this.getSavingThrows(this.attributesModifiers, this.characterSavingThrowsBonuses);
     },
     getSavingThrows(modifiers, bonuses){
+        if(Object.keys(this.savingThrows).length !== 0){
+            this.savingThrows = {};
+        }
         for(let attribute in modifiers){
             for(let attributeWithBonus of bonuses){
                 if(attribute === attributeWithBonus){
@@ -405,9 +368,16 @@ export default {
     }, 
     finalChoiceOfClass(finalClassname){
        this.finalClass = finalClassname;
+       this.getSavingThrowsBonuses(this.allClasses[this.finalClass].proficiencies.savingThrows);
+       if(this.allRaces['Half-Elf'].halfElfExtraAttrs.length !== 0){
+           this.allRaces['Half-Elf'].halfElfExtraAttrs = [];
+       }
     },
     finalChoiceOfRace(finalRacename){
        this.finalRace = finalRacename;
+       if(this.allRaces['Half-Elf'].halfElfExtraAttrs.length !== 0){
+           this.allRaces['Half-Elf'].halfElfExtraAttrs = [];
+       }
     },
     makeReadable(oneWord){
         let result1 = '';
@@ -435,4 +405,5 @@ export default {
 <style>
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import './assets/main.css';
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500&family=Fondamento&display=swap');
 </style>

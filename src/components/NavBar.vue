@@ -15,22 +15,24 @@
                 <li class="nav-item active">
                   <a class="nav-link" v-on:click="pageChanger = openPageRaces()">Races </a>
                 </li>
-                <template v-if="finalClass !== ''">
-                  <li>
-                    <h2 class="navbar-final-class">{{finalClass}}</h2>
-                  </li>
-                </template>
-                <template v-if="finalRace !== ''">
-                  <li>
-                    <h2 class="navbar-final-race">{{finalRace}}</h2>
-                  </li>
-                </template>
-                <template v-if="finalRace !== '' && finalClass !== ''">
-                  <li>
-                    <button v-on:click="pageChanger = openPageCalc()" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
-                      Calculate Ability Scores
-                    </button>
-                  </li>
+                <template v-if="pageChanger !== 'finishedSheet'">
+                    <template v-if="finalClass !== ''">
+                        <li>
+                            <h2 class="navbar-final-class">{{finalClass}}</h2>
+                        </li>
+                    </template>
+                    <template v-if="finalRace !== ''">
+                        <li>
+                            <h2 class="navbar-final-race">{{finalRace}}</h2>
+                        </li>
+                    </template>
+                    <template v-if="finalRace !== '' && finalClass !== ''">
+                        <li>
+                            <button v-on:click="pageChanger = openPageCalc()" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            Calculate Ability Scores
+                            </button>
+                        </li>
+                    </template>
                 </template>
               </ul>
           </nav>
@@ -82,4 +84,5 @@ export default {
 <style>
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import '../assets/main.css';
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500&family=Fondamento&display=swap');
 </style>

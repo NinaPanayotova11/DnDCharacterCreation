@@ -15,6 +15,7 @@
              "savingThrows":"Strength, Constitution",
              "skills":"Choose two skills from Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, and Survival"
           },
+          "colspanBeforeSlots": 2,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -127,6 +128,8 @@
              "savingThrows":"Intelligence, Wisdom",
              "skills":"Choose two from Arcana, History, Insight, Investigation, Medicine, and Religion"
           },
+          "colspanBeforeSlots": 4,
+          "colspanSlots": 12,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -466,7 +469,7 @@
           "name":"Rogue",
           "type":"nonSpellcaster",
           "image":"https://i.pinimg.com/564x/01/56/c7/0156c7576b1704ee70a55e4d1bd0db74.jpg",
-          "introduction":"Rogues rely on skill, stealth, and their foes\\' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem, demonstrating a resourcefulness and versatility that is the cornerstone of any successful adventuring party.You must have a Dexterity score of 13 or higher in order to multiclass in or out of this class.",
+          "introduction":"Rogues rely on skill, stealth, and their foes' vulnerabilities to get the upper hand in any situation. They have a knack for finding the solution to just about any problem, demonstrating a resourcefulness and versatility that is the cornerstone of any successful adventuring party.You must have a Dexterity score of 13 or higher in order to multiclass in or out of this class.",
           "hitPoints":{
              "hitDice":"1d8 per rogue level",
              "hitPointsAtFirstLevel":"8 + your Constitution modifier",
@@ -475,10 +478,11 @@
           "proficiencies":{
              "armor":"Light armor",
              "weapons":"Simple weapons, hand crossbows, longswords, rapiers, shortswords",
-             "tools":"Thieves\\' tools",
+             "tools":"Thieves' tools",
              "savingThrows":"Dexterity, Intelligence",
              "skills":"Choose four from Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, and Stealth"
           },
+          "colspanBeforeSlots": 2,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -611,6 +615,8 @@
              "savingThrows":"Wisdom, Charisma",
              "skills":"Choose two from History, Insight, Medicine, Persuasion, and Religion"
           },
+          "colspanBeforeSlots": 4,
+          "colspanSlots": 12,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -950,7 +956,7 @@
           "name":"Druid",
           "type":"Spellcaster",
           "image":"https://i.pinimg.com/564x/22/15/e0/2215e0b60512e6055cbbee026a2d3f03.jpg",
-          "introduction":"Whether calling on the elemental forces of nature or emulating the creatures of the animal world, druids are an embodiment of nature\\'s resilience, cunning, and fury. They claim no mastery over nature, but see themselves as extensions of nature\\'s indomitable will. You must have a Wisdom score of 13 or higher in order to multiclass in or out of this class.",
+          "introduction":"Whether calling on the elemental forces of nature or emulating the creatures of the animal world, druids are an embodiment of nature's resilience, cunning, and fury. They claim no mastery over nature, but see themselves as extensions of nature's indomitable will. You must have a Wisdom score of 13 or higher in order to multiclass in or out of this class.",
           "hitPoints":{
              "hitDice":"1d8 per druid level",
              "hitPointsAtFirstLevel":"8 + your Constitution modifier",
@@ -963,6 +969,8 @@
              "savingThrows":"Intelligence, Wisdom",
              "skills":"Choose two from Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, and Survival"
           },
+          "colspanBeforeSlots": 4,
+          "colspanSlots": 12,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -1311,10 +1319,11 @@
           "proficiencies":{
              "armor":"None",
              "weapons":"Simple weapons, shortswords",
-             "tools":"Choose one type of artisan\\'s tools or one musical instrument",
+             "tools":"Choose one type of artisan's tools or one musical instrument",
              "savingThrows":"Strength, Dexterity",
              "skills":"Choose two from Acrobatics, Athletics, History, Insight, Religion, and Stealth"
           },
+          "colspanBeforeSlots": 2,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -1474,7 +1483,7 @@
           "name":"Paladin",
           "type":"halfSpellcaster",
           "image":"https://i.pinimg.com/564x/3f/7a/1d/3f7a1d4c8789ac516f6ca0d2dfcd535a.jpg",
-          "introduction":"Whether sworn before a god\\'s altar and the witness of a priest, in a sacred glade before nature spirits and fey beings, or in a moment of desperation and grief with the dead as the only witness, a paladin\\'s oath is a powerful bond. You must have a Charisma score and a Strength score of 13 or higher in order to multiclass in or out of this class.",
+          "introduction":"Whether sworn before a god's altar and the witness of a priest, in a sacred glade before nature spirits and fey beings, or in a moment of desperation and grief with the dead as the only witness, a paladin's oath is a powerful bond. You must have a Charisma score and a Strength score of 13 or higher in order to multiclass in or out of this class.",
           "hitPoints":{
              "hitDice":"1d10 per paladin level",
              "hitPointsAtFirstLevel":"10 + your Constitution modifier",
@@ -1487,6 +1496,8 @@
              "savingThrows":"Wisdom, Charisma",
              "skills":"Choose two from Athletics, Insight, Intimidation, Medicine, Persuasion, and Religion"
           },
+          "colspanBeforeSlots": 4,
+          "colspanSlots": 5,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -1759,6 +1770,8 @@
              "savingThrows":"Strength, Dexterity",
              "skills":"Choose three from Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, and Survival"
           },
+          "colspanBeforeSlots": 4,
+          "colspanSlots": 5,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -2031,6 +2044,8 @@
              "savingThrows":"Constitution, Charisma",
              "skills":"Choose two from Arcana, Deception, Insight, Intimidation, Persuasion, and Religion"
           },
+          "colspanBeforeSlots": 6,
+          "colspanSlots": 12,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -2423,6 +2438,7 @@
              "savingThrows":"Wisdom, Charisma",
              "skills":"Choose two from Arcana, Deception, History, Intimidation, Investigation, Nature, and Religion"
           },
+          "colspanBeforeSlots": 2,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -2635,6 +2651,8 @@
              "savingThrows":"Dexterity, Charisma",
              "skills":"Choose any three"
           },
+          "colspanBeforeSlots": 5,
+          "colspanSlots": 12,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",
@@ -3007,6 +3025,7 @@
              "savingThrows":"Strength, Constitution",
              "skills":"Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival"
           },
+          "colspanBeforeSlots": 2,
           "levels":{
              "1":{
                 "proficiencyBonus":"+2",

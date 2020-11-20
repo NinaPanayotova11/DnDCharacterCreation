@@ -26,8 +26,13 @@
         </div>
         <div class="row calc-labels">
           <div class="container">
-            <div class="row">
-                <h4 style="font-style: italic;">All ability scores start at 8. You are allotted a number of 27 points to "buy" higher ability scores. To increase an ability score of 12 (or lower) to a higher one, you buy an increase on a 1-for-1 basis. The cost to increase your ability score from 13 to 14 or from 14 to 15 would be higher - 2 points. Before adding the racial bonus to the total score, you can have a maximum of 15 on each ability score.</h4>
+            <div class="row point-system-info">
+                <h4>
+                    <br>
+                    All ability scores start at 8. You are allotted a number of 27 points to "buy" higher ability scores. To increase an ability score of 12 (or lower) to a higher one, you buy an increase on a 1-for-1 basis. The cost to increase your ability score from 13 to 14 or from 14 to 15 would be higher - 2 points. Before adding the racial bonus to the total score, you can have a maximum of 15 on each ability score. <br>
+                    <br>
+                    Ability Modifiers start as low as -1 for a Total Score of 8 and increase with 1 for every increase of the Total Score with 2. 
+                </h4>
             </div>
             <div class="row tables-holder">
                 <table class="table table-dark point-table">
@@ -83,7 +88,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row">
+            <div class="row calc-header">
               <div class="col-2">
                 <p>Attribute</p>
               </div>
@@ -211,7 +216,7 @@ export default {
     },
     methods: {
         openFinalSheet(){
-            this.$emit('changePage', 'finishedSheet');
+            this.$emit('changePageAbilityCalc', 'finishedSheet');
             this.$emit('changeCharacterName', this.characterName);
             this.$emit('changeAttributesModifiers', this.attributesModifiers);
             this.$emit('changeAttributesTotalScores', this.attributesTotalScores);
@@ -227,17 +232,22 @@ export default {
             this.allRaces[this.finalRace].halfElfExtraAttrs.push(newBonus);
         },
         increasePointScore(attrValue, attrName){
-            this.attributesScores[attrName]++;
-            this.spendAttributePointsIncrease(attrValue, attrName);
+            if(this.spendAttributePointsIncrease(attrValue, attrName)){
+                this.attributesScores[attrName]++;
+            }
         },
         spendAttributePointsIncrease(attrValue, attrName){
             if(attrValue ===  8 || attrValue === 9 || attrValue === 10 || attrValue === 11 || attrValue === 12){
                 this.attributesPointScores[attrName]++;
                 this.pointsLeft--;
             }else if(attrValue === 13 || attrValue === 14){
+                if(this.pointsLeft === 1){
+                    return false;
+                }
                 this.attributesPointScores[attrName]+=2;
                 this.pointsLeft-=2;
             }
+            return true;
         },
         decreasePointScore(attrValue, attrName){
             this.attributesScores[attrName]--;
@@ -286,4 +296,5 @@ export default {
 <style>
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import '../assets/main.css';
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500&family=Fondamento&display=swap');
 </style>
