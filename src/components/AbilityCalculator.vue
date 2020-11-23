@@ -237,7 +237,7 @@ export default {
             }
         },
         spendAttributePointsIncrease(attrValue, attrName){
-            if(attrValue ===  8 || attrValue === 9 || attrValue === 10 || attrValue === 11 || attrValue === 12){
+            if(attrValue >=  8 && attrValue <= 12){
                 this.attributesPointScores[attrName]++;
                 this.pointsLeft--;
             }else if(attrValue === 13 || attrValue === 14){
@@ -254,7 +254,7 @@ export default {
             this.spendAttributePointsDecrease(attrValue, attrName);
         },
         spendAttributePointsDecrease(attrValue, attrName){
-            if(attrValue === 9 || attrValue === 10 || attrValue === 11 || attrValue === 12 || attrValue === 13){
+            if(attrValue >= 9 && attrValue <= 13){
                 this.attributesPointScores[attrName]--;
                 this.pointsLeft++;
             }else if(attrValue === 14 || attrValue === 15){
