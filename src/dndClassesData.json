@@ -2622,16 +2622,16 @@
              }
           },
           "similarClasses":{
-             "firstName":"Barbarian",
-             "firstDescription":" Both Require Strength, Similar Aesthetic",
-             "secondName":"Paladin",
-             "secondDescription":" Similar Proficiencies, Fighting Style, Both Require Strength"
+             "firstName":"Sorcerer",
+             "firstDescription":" Both are Spellcasters, Both Require Charisma",
+             "secondName":"Bard",
+             "secondDescription":" Both are Spellcasters, Both Require Charisma, Same Hit Dice, Similar Weapons and Armor"
           },
           "suitableRaces":{
-             "firstName":"Half-Orc",
-             "firstDescription":" +2 Strength",
-             "secondName":"Dragonborn",
-             "secondDescription":" +2 Strength"
+            "firstName":"Half-Elf",
+            "firstDescription":" +2 Charisma, +1 to Two Ability Scores",
+            "secondName":"Tiefling",
+            "secondDescription":" +2 Charisma"
           }
        },
        "Bard":{

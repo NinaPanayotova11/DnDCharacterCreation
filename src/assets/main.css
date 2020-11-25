@@ -223,9 +223,6 @@ p {
   overflow-x: scroll;
   overflow-y: hidden;
 }
-.individual-race-content {
-  height: 100%;
-}
 .navbar-final-class,
 .navbar-final-race {
   padding-left: 200px;
@@ -387,4 +384,11 @@ p {
   font-family: "Big Shoulders Stencil Display", cursive;
   font-family: "Fondamento", cursive;
   font-weight: bold;
+}
+.class-page,
+.race-page {
+  background-color: #d2bdae;
+}
+.race-detailed-description {
+  padding-bottom: 275px;
 }
