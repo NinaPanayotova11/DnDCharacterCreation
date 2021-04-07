@@ -123,8 +123,8 @@
        "similarRaces":{
           "firstName":"Tiefling",
           "firstDescription":" +2 Charisma",
-          "secondName":"Dragonborn",
-          "secondDescription":" +1 Charisma"
+          "secondName":"Elf",
+          "secondDescription":" +2 Dexterity"
        },
        "suitableClasses":{
           "firstName":"Sorcerer",
@@ -148,8 +148,8 @@
           "Constitution":1
        },
        "similarRaces":{
-          "firstName":"Dragonborn",
-          "firstDescription":" +2 Strength",
+          "firstName":"Human",
+          "firstDescription":" +1 to All Ability Scores",
           "secondName":"Dwarf",
           "secondDescription":" +2 Constitution"
        },
@@ -205,8 +205,8 @@
           "Charisma":1
        },
        "similarRaces":{
-          "firstName":"Dragonborn",
-          "firstDescription":" +2 Strength, +1 Charisma",
+          "firstName":"Half-Orc",
+          "firstDescription":" +2 Strength",
           "secondName":"Half-Elf",
           "secondDescription":" +1 to Two Ability Scores, +2 to Charisma"
        },
@@ -234,8 +234,8 @@
        "similarRaces":{
           "firstName":"Half-Elf",
           "firstDescription":" +2 Charisma",
-          "secondName":"Dragonborn",
-          "secondDescription":" +1 Charisma"
+          "secondName":"Human",
+          "secondDescription":" +1 to All Ability Scores"
        },
        "suitableClasses":{
           "firstName":"Warlock",

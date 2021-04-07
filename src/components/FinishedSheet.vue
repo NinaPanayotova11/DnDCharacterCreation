@@ -1,53 +1,63 @@
 <template>
     <div class="finishedSheet">
-            <div class="row">
+            <div class="row finishedSheet-main-row">
                 <div class="container final-sheet-container">
-                    <div class="row final-page-title-div">
+                    <div class="row final-page-title-div justify-content-center">
+                      <div class="col-12">
                           <h1 class="final-page-title">{{characterName}}</h1>
                           <h3 class="final-page-title final-page-title-small">Race: {{finalRace}}</h3>
                           <h3 class="final-page-title final-page-title-small">Class: {{finalClass}}</h3>
+                      </div>
                     </div>
-                    <div class="row">
-                        <div class = "col-9 scores-and-modifiers-div">
-                            <div class="row">
-                                <div class="col-4">
-                                <h4 class="final-sheet-titles">Ability</h4>
-                                </div>
-                                <div class="col-4">
-                                <h4 class="final-sheet-titles">Score</h4>
-                                </div>
-                                <div class="col-4">
-                                <h4 class="final-sheet-titles">Modifier</h4>
-                                </div>
-                            </div>
-                            <div v-for="(value, name) in attributesTotalScores"  v-bind:key="name" class="row">
-                                <div class="col-4">
-                                <h5 class="final-sheet-info">{{name}}:</h5>
-                                </div>
-                                <div class="col-4">
-                                <h5 class="final-sheet-info">{{value}}</h5>
-                                </div>
-                                <div class="col-4">
-                                <h5 class="final-sheet-info">{{attributesModifiers[name]}}</h5>
-                                </div>
-                            </div>
+                    <div class="row final-page-content-div">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-3">
+                            <h4 class="final-sheet-titles">Ability</h4>
+                          </div>
+                          <div class="col-3">
+                            <h4 class="final-sheet-titles">Score</h4>
+                          </div>
+                          <div class="col-3">
+                            <h4 class="final-sheet-titles">Modifier</h4>
+                          </div>
+                          <div class="col-3">
+                              <h4 class="final-sheet-titles">Saving Throws</h4>
+                          </div>
                         </div>
-                        <div class="col-3 saving-throws-div">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="final-sheet-titles">Saving Throws</h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div v-for="(savingThrow, attribute) in savingThrows" v-bind:key="attribute" class="col-12">
-                                    <h5 class="final-sheet-info">{{attribute}}: {{savingThrow}}</h5>
-                                </div>
-                            </div>
+                        <div class="row">
+                          <div class = "col-9 scores-and-modifiers-div">
+                              <div v-for="(value, name) in attributesTotalScores"  v-bind:key="name" class="row">
+                                  <div class="col-4">
+                                  <h5 class="final-sheet-info">{{name}}:</h5>
+                                  </div>
+                                  <div class="col-4">
+                                  <h5 class="final-sheet-info">{{value}}</h5>
+                                  </div>
+                                  <div class="col-4">
+                                  <h5 class="final-sheet-info">{{attributesModifiers[name]}}</h5>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-3 saving-throws-div">
+                              <div class="row">
+                                  <div v-for="(savingThrow, attribute) in savingThrows" v-bind:key="attribute" class="col-12">
+                                      <h5 class="final-sheet-info">{{savingThrow}}</h5>
+                                  </div>
+                              </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
-                    <div class="row final-sheet-explanation">
-                        <h5>*Your Saving Throw for each Ability is equal to your Ability Modifier. If the Class you have chosen has Proficiency in that Saving Throw, the Saving Throw is equal to the sum of the Ability Modifier and the Proficiency Bonus. Both your Proficiency Bonus and the Saving Throws, you are proficient with, are shown in the page of your Class.</h5>
-                    </div>
+                    <!-- <div class="row final-sheet-explanation align-items-end">
+                      <div class="container">
+                        <div class="row final-sheet-explanation-text">
+                          <div class="col-12">
+                            <p>*Your Saving Throw for each Ability is equal to your Ability Modifier. If the Class you have chosen has Proficiency in that Saving Throw, the Saving Throw is equal to the sum of the Ability Modifier and the Proficiency Bonus. Both your Proficiency Bonus and the Saving Throws, you are proficient with, are shown in the page of your Class.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
                 </div>
             </div>
         </div>

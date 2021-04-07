@@ -1,135 +1,144 @@
 <template>
-    <div class="calc">
-        <div v-if="finalRace === 'Half-Elf' && checkRacialBonusesAmount()" class="row">
-                <div class="container">
-                    <div class="row hal-elf-buttons-row">
-                        <h4>To play as a Half-Elf you need to choose two additional Racial Bonuses:</h4>
-                    </div>
-                    <div class="row hal-elf-buttons-row">
-                        <button v-on:click="addToHalfElfRacialBonuses('Strength')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
-                        Strength
-                        </button>
-                        <button v-on:click="addToHalfElfRacialBonuses('Dexterity')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
-                        Dexterity
-                        </button>
-                        <button v-on:click="addToHalfElfRacialBonuses('Constitution')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
-                        Constitution
-                        </button>
-                        <button v-on:click="addToHalfElfRacialBonuses('Intelligence')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
-                        Intelligence
-                        </button>
-                        <button v-on:click="addToHalfElfRacialBonuses('Wisdom')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
-                        Wisdom
-                        </button>  
-                    </div>
-                </div>  
+  <div class="calc">
+    <div v-if="finalRace === '' ||  finalClass === ''">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-6">
+              <h4 class="calc-warning">In order to calculate your ability scores you need to choose Class and Race!</h4>
+          </div>
         </div>
-        <div class="row calc-labels">
-          <div class="container">
-            <div class="row point-system-info">
-                <h4>
-                    <br>
-                    All ability scores start at 8. You are allotted a number of 27 points to "buy" higher ability scores. To increase an ability score of 12 (or lower) to a higher one, you buy an increase on a 1-for-1 basis. The cost to increase your ability score from 13 to 14 or from 14 to 15 would be higher - 2 points. Before adding the racial bonus to the total score, you can have a maximum of 15 on each ability score. <br>
-                    <br>
-                    Ability Modifiers start as low as -1 for a Total Score of 8 and increase with 1 for every increase of the Total Score with 2. 
-                </h4>
-            </div>
-            <div class="row tables-holder">
-                <table class="table table-dark point-table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Ability Score</th>
-                        <th scope="col">Point Cost</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td>1 (+1 from previous)</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10</th>
-                            <td>2 (+1 from previous)</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">11</th>
-                            <td>3 (+1 from previous)</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-dark point-table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Ability Score</th>
-                        <th scope="col">Point Cost</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">12</th>
-                            <td>4 (+1 from previous)</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">13</th>
-                            <td>5 (+1 from previous)</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">14</th>
-                            <td style="font-weight: bold; color: salmon;">7 (+2 from previous)</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">15</th>
-                            <td style="font-weight: bold; color: salmon;">9 (+2 from previous)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      </div>
+    </div>
+    <div v-else>
+      <div v-if="finalRace === 'Half-Elf' && checkRacialBonusesAmount()" class="row">
+              <div class="container">
+                  <div class="row justify-content-center hal-elf-buttons-row">
+                      <h4>To play as a Half-Elf you need to choose two additional Racial Bonuses:</h4>
+                  </div>
+                  <div class="row hal-elf-buttons-row">
+                      <button v-on:click="addToHalfElfRacialBonuses('Strength')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Strength
+                      </button>
+                      <button v-on:click="addToHalfElfRacialBonuses('Dexterity')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Dexterity
+                      </button>
+                      <button v-on:click="addToHalfElfRacialBonuses('Constitution')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Constitution
+                      </button>
+                      <button v-on:click="addToHalfElfRacialBonuses('Intelligence')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Intelligence
+                      </button>
+                      <button v-on:click="addToHalfElfRacialBonuses('Wisdom')" type="button" class="btn btn-primary half-elf-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
+                      Wisdom
+                      </button>  
+                  </div>
+              </div>  
+      </div>
+      <div class="row calc-labels">
+        <div class="container">
+          <div class="row point-system-info">
+              <h4>
+                  <br>
+                  All ability scores start at 8. You are allotted a number of 27 points to "buy" higher ability scores. To increase an ability score of 12 (or lower) to a higher one, you buy an increase on a 1-for-1 basis. The cost to increase your ability score from 13 to 14 or from 14 to 15 would be higher - 2 points. Before adding the racial bonus to the total score, you can have a maximum of 15 on each ability score. <br>
+                  <br>
+                  Ability Modifiers start as low as -1 for a Total Score of 8 and increase with 1 for every increase of the Total Score with 2. 
+              </h4>
+          </div>
+          <div class="row tables-holder">
+              <table class="table table-dark point-table">
+                  <thead>
+                      <tr>
+                      <th scope="col">Ability Score</th>
+                      <th scope="col">Point Cost</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row">8</th>
+                          <td>0  (+0 from previous)</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">9</th>
+                          <td>1 (+1 from previous)</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">10</th>
+                          <td>2 (+1 from previous)</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">11</th>
+                          <td>3 (+1 from previous)</td>
+                      </tr>
+                  </tbody>
+              </table>
+              <table class="table table-dark point-table">
+                  <thead>
+                      <tr>
+                      <th scope="col">Ability Score</th>
+                      <th scope="col">Point Cost</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row">12</th>
+                          <td>4 (+1 from previous)</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">13</th>
+                          <td>5 (+1 from previous)</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">14</th>
+                          <td style="font-weight: bold; color: salmon;">7 (+2 from previous)</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">15</th>
+                          <td style="font-weight: bold; color: salmon;">9 (+2 from previous)</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="table-scroller">
             <div class="row calc-header">
-              <div class="col-2">
+              <div class="col-2 col-sm-2">
                 <p>Attribute</p>
               </div>
-              <div class="col-2">
+              <div class="col-2 col-sm-2">
                 <p>Ability Score</p>
               </div>
-              <div class="col-1">
-              </div>
-              <div class="col-2">
+              <div class="col-2 col-sm-2">
                 <p>Racial Bonus</p>
               </div>
-              <div class="col-1">
-              </div>
-              <div class="col-2">
+              <div class="col-2 col-sm-2">
                 <p>Total Score</p>
               </div>
-              <div class="col-1">
+              <div class="col-2 col-sm-2">
                 <p>Ability Modifier</p>
               </div>
-              <div class="col-1">
+              <div class="col-2 col-sm-2">
                 <p>Point Cost</p>
               </div>
             </div>
-            <div v-for="(attribute, index) in attributes"  v-bind:key="index" class="row">
-                <div class="col-2">
+            <div v-for="(attribute, index) in attributes"  v-bind:key="index" class="row calc-body">
+                <div class="col-2 col-sm-2">
                     <p>{{attribute}}</p>
                 </div>
-                <div class="col-2">
+                <div class="col-2 col-sm-2">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-6 col-sm-6">
+                      <div class="row justify-content-end justify-content-sm-center">
                         <p>{{attributesScores[attribute]}}</p>
+                      </div>
                     </div>
-                    <div class="col-3">
-                    <div class="row">
+                    <div class="col-6 col-sm-6">
+                    <div class="row justify-content-center justify-content-sm-start">
                         <template v-if="pointsLeft > 0">
                             <button v-on:click="(attributesScores[attribute] < 15) ? increasePointScore(attributesScores[attribute], attribute) : attributesScores[attribute]" type="button" class="btn btn-primary btn-lg recommendations ability-score-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
                             +
                             </button>
                         </template>
                     </div>
-                    <div class="row">
+                    <div class="row justify-content-center justify-content-sm-start">
                         <template>
                             <button v-on:click="(attributesScores[attribute] > 8) ? decreasePointScore(attributesScores[attribute], attribute) : attributesScores[attribute]" type="button" class="btn btn-primary btn-lg recommendations ability-score-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
                             -
@@ -139,50 +148,54 @@
                     </div>
                 </div>
                 </div>
-                <div class="col-1"> 
-                    <p> + </p>
+                <div class="col-2 col-sm-2">
+                    <p> + {{getRaceBonus(attribute, finalRace)}}</p>
                 </div>
-                <div class="col-2">
-                    <p>{{getRaceBonus(attribute, finalRace)}}</p>
-                </div>
-                <div class="col-1">
-                    <p> = </p>
-                </div>
-                <div class="col-2">
+                <div class="col-2 col-sm-2">
                     <p>{{getTotalScore(getRaceBonus(attribute, finalRace), attributesScores[attribute], attribute)}}</p>
                 </div>
-                <div class="col-1">
+                <div class="col-2 col-sm-2">
                     <p>{{getModifier(attributesTotalScores[attribute], attribute)}}</p>
                 </div>
-                <div class="col-1">
+                <div class="col-2 col-sm-2">
                     <p>{{attributesPointScores[attribute]}}</p>
                 </div>
             </div>
+            <br>
           </div>
+          <br>
         </div>
-        <div class="row">
-            <div class="container">
-                <div class="row row-left-points">
-                    <p>Points Left: {{pointsLeft}}</p>
+      </div>
+      <div class="row">
+          <div class="container">
+              <div class="row row-left-points">
+                <div class="col-12">
+                  <p>Points Left: {{pointsLeft}}</p>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="container">
-                <div class="row  final-row-calc">
-                    <div class="char-name-form">
-                            <label class="character-name-label" for="fname">Character Name:</label>
-                            <input type="text" v-model="characterName" id="fname" name="firstname" placeholder="Your name..">
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="container">
+              <div class="row final-row-calc justify-content-between  align-items-center">
+                  <div class="col-12 char-name-form">
+                    <div class="row justify-content-center">
+                        <label class="character-name-label" for="fname">Character Name: </label>
+                        <input type="text" v-model="characterName" id="fname" name="firstname" placeholder="Your name..">
                     </div>
-                    <div class="finish-btn-div">
+                  </div>
+                  <div class="col-12 finish-btn-div">
+                    <div class="row justify-content-center">
                         <button v-on:click="openFinalSheet()" type="button" class="btn btn-primary btn-lg recommendations" data-toggle="button" aria-pressed="false" autocomplete="off">
                             Finish Character Creation
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
-       </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 export default {

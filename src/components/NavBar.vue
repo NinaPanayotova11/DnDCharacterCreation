@@ -1,43 +1,50 @@
 <template>
-    <div class= "row">
-        <div class="col-12">
-          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link nav-brand" v-on:click="pageChanger = openHomePage()">DnD Character Creation </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" v-on:click="pageChanger = openHomePage()">Home </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" v-on:click="pageChanger = openPageClasses()">Classes </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" v-on:click="pageChanger = openPageRaces()">Races </a>
-                </li>
-                <template v-if="pageChanger !== 'finishedSheet'">
-                    <template v-if="finalClass !== ''">
-                        <li>
-                            <h2 class="navbar-final-class">{{finalClass}}</h2>
-                        </li>
-                    </template>
-                    <template v-if="finalRace !== ''">
-                        <li>
-                            <h2 class="navbar-final-race">{{finalRace}}</h2>
-                        </li>
-                    </template>
-                    <template v-if="finalRace !== '' && finalClass !== ''">
-                        <li>
-                            <button v-on:click="pageChanger = openPageCalc()" type="button" class="btn btn-primary btn-lg recommendations navbar-calc-btn" data-toggle="button" aria-pressed="false" autocomplete="off">
-                            Calculate Ability Scores
-                            </button>
-                        </li>
-                    </template>
-                </template>
-              </ul>
-          </nav>
-        </div>
-      </div>
+  <!-- <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" v-on:click="pageChanger = openNewPage('home')">DnD Character Creation</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" v-on:click="pageChanger = openNewPage('home')">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" v-on:click="pageChanger = openNewPage('allClasses')">Class</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" v-on:click="pageChanger = openNewPage('allRaces')">Race</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" v-on:click="pageChanger = openNewPage('calc')">Calculate Ability Scores</a>
+        </li>
+      </ul>
+    </div>  
+  </nav> -->
+   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" v-on:click="pageChanger = openNewPage('home')">DnD Character Creation</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link"  v-on:click="pageChanger = openNewPage('home')">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  v-on:click="pageChanger = openNewPage('allClasses')">Class</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  v-on:click="pageChanger = openNewPage('allRaces')">Race</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  v-on:click="pageChanger = openNewPage('calc')">Calculate Ability Scores</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </template>
 <script>
 export default {
@@ -66,17 +73,8 @@ export default {
         },
     },
     methods: {
-        openPageCalc(){
-            this.$emit('changePage', 'calc');
-        },
-        openPageClasses(){
-            this.$emit('changePage', 'allClasses');
-        },
-        openPageRaces(){
-            this.$emit('changePage', 'allRaces');
-        },
-        openHomePage(){
-            this.$emit('changePage', 'home');
+        openNewPage(differentOption){
+          this.$emit('changePage', differentOption);
         }
     }
 }

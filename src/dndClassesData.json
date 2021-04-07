@@ -107,8 +107,8 @@
           "suitableRaces":{
              "firstName":"Half-Orc",
              "firstDescription":" +2 Strength",
-             "secondName":"Dragonborn",
-             "secondDescription":" +2 Strength"
+             "secondName":"Dwarf",
+             "secondDescription":" +2 Constitution"
           }
        },
        "Wizard":{
@@ -1749,8 +1749,8 @@
           "suitableRaces":{
              "firstName":"Half-Elf",
              "firstDescription":" +2 Charisma, +1 to Two Ability Scores",
-             "secondName":"Dragonborn",
-             "secondDescription":" +2 Strength, +1 Charisma"
+             "secondName":"Half-Orc",
+             "secondDescription":" +2 Strength"
           }
        },
        "Ranger":{
@@ -3157,8 +3157,8 @@
           "suitableRaces":{
              "firstName":"Half-Orc",
              "firstDescription":" +2 Strength",
-             "secondName":"Dragonborn",
-             "secondDescription":" +2 Strength"
+             "secondName":"Dwarf",
+             "secondDescription":" +2 Constitution"
           }
        }
     }
